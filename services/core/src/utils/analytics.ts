@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import type { MulterBlobFile } from "@/types";
-import { type InterviewSession, type NursingSession, files } from "@lib/database";
+import { type InterviewSession, type NursingSession, type StressSession, files } from "@lib/database";
 import { getBlobUrl, uploadBlob } from "./blob";
 
 export async function saveAnalyticsFile(file: MulterBlobFile) {
@@ -15,6 +15,29 @@ export async function saveAnalyticsFile(file: MulterBlobFile) {
     isAnalytics: true,
   });
   return { key, name: file.originalname };
+}
+
+export async function getSessionWithSignedUrls(session: StressSession) {
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  const currentSession = session as any;
+  if (currentSession.combinedAnalytics?.facial_emotion_recognition?.plot) {
+    currentSession.combinedAnalytics.facial_emotion_recognition.plot = await getBlobUrl(
+      currentSession.combinedAnalytics?.facial_emotion_recognition?.plot,
+    );
+  }
+  if (Array.isArray(session.individualAnalytics)) {
+    for (let i = 0; i < session.individualAnalytics.length; i++) {
+      const individual = session.individualAnalytics[i];
+      if (individual.facial_emotion_recognition?.plot) {
+        individual.facial_emotion_recognition.plot = await getBlobUrl(individual.facial_emotion_recognition.plot);
+      }
+    }
+  }
+  return session;
+}
+
+export function getNursingSessionWithSignedUrls(session: NursingSession) {
+  return session as NursingSession;
 }
 
 export function getInterviewSessionWithSignedUrls(session: InterviewSession) {
@@ -41,8 +64,4 @@ export function getInterviewSessionWithSignedUrls(session: InterviewSession) {
     }
   }
   return session as InterviewSession;
-}
-
-export function getNursingSessionWithSignedUrls(session: NursingSession) {
-  return session as NursingSession;
 }

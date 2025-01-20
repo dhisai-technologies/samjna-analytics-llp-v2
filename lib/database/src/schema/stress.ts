@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { integer, jsonb, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { jsonb, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
 import { generateId, generateName } from "../utils";
 
 export const stressSessions = pgTable("stress_sessions", {
@@ -16,9 +16,11 @@ export const stressSessions = pgTable("stress_sessions", {
   combinedAnalytics: jsonb("combined_analytics"),
   combinedFiles: jsonb("combined_files"),
   error: jsonb("error"),
-  userId: integer("user_id").notNull(),
+  userId: varchar("user_id", { length: 30 }).notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
     .notNull()
     .$onUpdate(() => new Date()),
 });
+
+export type StressSession = typeof stressSessions.$inferSelect;

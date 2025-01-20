@@ -2,10 +2,10 @@ import nltk
 import torch
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 import os 
-from app.functions.fer import Model
+from app.modules.interview.utils.fer import Model
 import cv2
 import dlib
-from app.functions.valence_arousal import load_models
+from app.modules.interview.utils.valence_arousal import load_models
 from dotenv import load_dotenv
 # Download necessary NLTK packages
 nltk.download('punkt')
@@ -28,7 +28,7 @@ gem_model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 # Device setup
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
-models_folder=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'models')
+models_folder=os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), 'models')
 fer_model_path=os.path.join(models_folder,'22.6_AffectNet_10K_part2.pt')
 val_ar_feat_path=os.path.join(models_folder,'resnet_features.pt')
 valence_arousal_model=os.path.join(models_folder,'emotion_model.pt')

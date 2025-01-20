@@ -3,12 +3,13 @@ from fastapi.routing import APIRoute
 from fastapi.responses import JSONResponse
 import uvicorn
 import concurrent.futures
-from app.functions.nursing import initAnalyzer
+from app.modules.nursing.utils import initAnalyzer
 from app.utils.file import get_file_or_url, get_filepath
 from app.utils.socket import ConnectionManager
 from app.utils.api import NursingAPI, InterviewAPI
-from app.controllers.nursing_controller import analyze_nursing
-from app.controllers.interview_controller import analyze_interview
+from app.modules.stress.controller import analyze_stress
+from app.modules.nursing.controller import analyze_nursing
+from app.modules.interview.controller import analyze_interview
 import hydra
 from datetime import datetime
 
@@ -32,6 +33,26 @@ async def websocket_endpoint(websocket: WebSocket, uid: str):
             await websocket.receive_text()
     except WebSocketDisconnect:
         connection_manager.disconnect(uid)
+
+
+# Stress Module
+
+# API route for stress
+@app.post(f"/{service_name}/analyze/v1")
+async def stress_controller(background_tasks: BackgroundTasks, uid: str = Form(...), count : str = Form(...), final : str = Form(...), user_id: str = Form(...), file_or_url: tuple = Depends(get_file_or_url)):
+    files, url = file_or_url
+    count = int(count)
+    final = final.lower() == 'true'
+    file_path = await get_filepath(uid, count, files, url)
+    if not file_path:
+            return JSONResponse(status_code=400, content={"message": "Error processing file/url"})
+
+    def log(message: str):
+        connection_manager.send_log_background(uid, message)
+        
+
+    background_tasks.add_task(lambda: executor.submit(analyze_stress, file_path, uid, user_id, count, final, log))
+    return JSONResponse(status_code=200, content={"message": "URL downloaded and sent for processing", "data": {"uid": uid}})
 
 
 # Nursing Module

@@ -1,6 +1,6 @@
 import os
 from typing import Callable, Any
-from app.functions.nursing import extractFrames, getPrediction, analyzePredictions
+from app.modules.nursing.utils import extractFrames, getPrediction, analyzePredictions
 from app.utils.api import  NursingAPI
 import traceback
 import pandas as pd

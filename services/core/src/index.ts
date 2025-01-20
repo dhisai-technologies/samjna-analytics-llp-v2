@@ -28,11 +28,14 @@ function startServer() {
     path: `/${config.NAME}/socket.io`,
   });
   io.on("connection", async (socket: AppSocket) => {
-    socket.on("join-interview-session", async (uid: string) => {
-      socket.join(`interview-session-${uid}`);
+    socket.on("join-stress-session", async (uid: string) => {
+      socket.join(`stress-session-${uid}`);
     });
     socket.on("join-nursing-session", async (uid: string) => {
       socket.join(`nursing-session-${uid}`);
+    });
+    socket.on("join-interview-session", async (uid: string) => {
+      socket.join(`interview-session-${uid}`);
     });
     socket.userId = await getSocketUser(config.SESSION_SECRET, socket);
     if (!socket.userId) return;

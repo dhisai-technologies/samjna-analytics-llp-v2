@@ -8,6 +8,7 @@ import InterviewRouter from "./interview";
 import ModelRouter from "./model.route";
 import NotificationRouter from "./notification.route";
 import NursingRouter from "./nursing";
+import StressRouter from "./stress";
 import UserRouter from "./user.route";
 
 const router: Router = Router();
@@ -15,6 +16,7 @@ const router: Router = Router();
 router.use("/auth", AuthRouter);
 router.use("/interviews", InterviewRouter);
 router.use("/nursing", NursingRouter);
+router.use("/stress", StressRouter);
 router.use("/files", FileRouter);
 router.use("/models", ModelRouter);
 router.use(verifyAuthentication(db, config.SESSION_SECRET));
