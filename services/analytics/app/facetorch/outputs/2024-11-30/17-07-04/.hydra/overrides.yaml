@@ -1,0 +1,3 @@
+- path_image=/Users/vishwath.p/Documents/Personal Projects/Samjna/test2.jpg
+- path_output=/Users/vishwath.p/Documents/Personal Projects/Samjna/output.jpg
+- analyzer.detector.downloader.path_local=/Users/vishwath.p/facetorch_models/detector/model.pt

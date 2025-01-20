@@ -1,0 +1,11 @@
+{
+  "extends": "@tools/typescript-config/base.json",
+  "compilerOptions": {
+    "lib": ["ES2015"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "paths": {}
+  },
+  "exclude": ["node_modules"],
+  "include": ["src"]
+}

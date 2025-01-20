@@ -1,0 +1,10 @@
+{
+  "name": "@tools/proxy",
+  "scripts": {
+    "dev": "node server.js",
+    "clean": "rm -rf node_modules"
+  },
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  }
+}

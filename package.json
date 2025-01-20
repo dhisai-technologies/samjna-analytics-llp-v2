@@ -1,0 +1,38 @@
+{
+  "name": "samjna-analytics-llp-v2",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "dev:services": "turbo run dev --filter=\"./services/*\" --filter=@tools/proxy",
+    "dev:apps": "turbo run dev --filter=\"./apps/*\"",
+    "build": "turbo build",
+    "build:lib": "turbo run build --filter=\"./lib/*\"",
+    "format": "turbo format --continue --",
+    "format:fix": "turbo format --continue -- --write",
+    "lint": "turbo lint --continue --",
+    "lint:fix": "turbo lint --continue -- --apply",
+    "clean": "turbo run clean",
+    "db:generate": "pnpm --filter @lib/database db:generate",
+    "db:migrate": "pnpm --filter @lib/database db:migrate",
+    "db:push": "pnpm --filter @lib/database db:push",
+    "db:studio": "pnpm --filter @lib/database db:studio",
+    "docker:db": "./.docker/db.sh",
+    "docker:build": "./.docker/build.sh",
+    "docker:run": "./.docker/run.sh",
+    "docker:stop": "./.docker/stop.sh",
+    "docker:push": "./.docker/push.sh"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.4",
+    "@biomejs/biome": "^1.5.3",
+    "typescript": "^5.4.5"
+  },
+  "packageManager": "pnpm@8.15.6",
+  "engines": {
+    "node": ">=18"
+  },
+  "overrides": {
+    "react": "^18",
+    "react-dom": "^18"
+  }
+}

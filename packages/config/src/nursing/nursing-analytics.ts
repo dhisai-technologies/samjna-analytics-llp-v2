@@ -1,0 +1,36 @@
+export type NursingAnalytics = {
+  id: string;
+  count: number;
+  answer?: string;
+  metadata?: {
+    total_frames: number;
+    disgust_frames: number;
+    non_disgust_frames: number;
+    percentage_disgust: number;
+    emotion_counts: Record<string, number>;
+    emotion_percentages: Record<string, number>;
+    action_unit_counts: Record<string, number>;
+    action_unit_percentages: Record<string, number>;
+    valence_mean: number | null;
+    valence_std: number | null;
+    arousal_mean: number | null;
+    arousal_std: number | null;
+    valence_mean_disgust: number | null;
+    valence_std_disgust: number | null;
+    arousal_mean_disgust: number | null;
+    arousal_std_disgust: number | null;
+    valence_mean_non_disgust: number | null;
+    valence_std_non_disgust: number | null;
+    arousal_mean_non_disgust: number | null;
+    arousal_std_non_disgust: number | null;
+    valence_all: number[];
+    arousal_all: number[];
+    valence_disgust: number[];
+    arousal_disgust: number[];
+    valence_non_disgust: number[];
+    arousal_non_disgust: number[];
+    arousal_boxplot?: string | null;
+    valence_boxplot?: string | null;
+    disgust_score: number | null;
+  };
+};

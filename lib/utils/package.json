@@ -1,0 +1,51 @@
+{
+  "name": "@lib/utils",
+  "type": "module",
+  "exports": {
+    "./types": {
+      "types": "./src/types.ts",
+      "default": "./dist/types.js"
+    },
+    "./tools": {
+      "types": "./src/tools/index.ts",
+      "default": "./dist/tools/index.js"
+    },
+    "./errors": {
+      "types": "./src/errors/index.ts",
+      "default": "./dist/errors/index.js"
+    },
+    "./helpers": {
+      "types": "./src/helpers/index.ts",
+      "default": "./dist/helpers/index.js"
+    },
+    "./middlewares": {
+      "types": "./src/middlewares/index.ts",
+      "default": "./dist/middlewares/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc && resolve-tspaths",
+    "lint": "biome lint .",
+    "format": "biome format . ",
+    "clean": "rm -rf dist && rm -rf node_modules"
+  },
+  "peerDependencies": {
+    "@lib/database": "workspace:*",
+    "bcrypt": "^5.1.1",
+    "drizzle-orm": "^0.31.2",
+    "express": "^4.18.3",
+    "zod": "^3.23.8"
+  },
+  "dependencies": {
+    "jose": "^5.9.6",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "@tools/typescript-config": "workspace:*",
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.5",
+    "resolve-tspaths": "^0.8.19",
+    "tsx": "^4.15.7"
+  }
+}

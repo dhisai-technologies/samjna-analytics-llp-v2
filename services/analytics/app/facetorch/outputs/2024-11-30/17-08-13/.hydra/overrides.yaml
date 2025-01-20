@@ -1,0 +1,9 @@
+- path_image=/Users/vishwath.p/Documents/Personal Projects/Samjna/test2.jpg
+- path_output=/Users/vishwath.p/Documents/Personal Projects/Samjna/output.jpg
+- analyzer.detector.downloader.path_local=/Users/vishwath.p/facetorch_models/detector/model.pt
+- analyzer.predictor.embed.downloader.path_local=/Users/vishwath.p/facetorch_models/predictor/embed/model.pt
+- analyzer.predictor.verify.downloader.path_local=/Users/vishwath.p/facetorch_models/predictor/verify/model.pt
+- analyzer.predictor.fer.downloader.path_local=/Users/vishwath.p/facetorch_models/predictor/fer/model.pt
+- analyzer.predictor.au.downloader.path_local=/Users/vishwath.p/facetorch_models/predictor/au/model.pt
+- analyzer.predictor.deepfake.downloader.path_local=/Users/vishwath.p/facetorch_models/predictor/deepfake/model.pt
+- analyzer.predictor.align.downloader.path_local=/Users/vishwath.p/facetorch_models/predictor/align/model.pt
