@@ -24,12 +24,12 @@ cp $CONFIG_DIR/$CONFIG_FILE_PATH $APP_DIR/docker-compose.yml
 cd $APP_DIR
 
 # Remove existing containers
-if ! docker-compose down; then
+if ! docker compose down; then
   echo "Failed to stop and remove existing containers"
   exit 1
 fi
 
-if ! DOCKER_BUILDKIT=1 docker-compose up --build -d; then
+if ! DOCKER_BUILDKIT=1 docker compose up --build -d; then
   echo "❌ Failed to build and start Docker containers"
   exit 1
 fi

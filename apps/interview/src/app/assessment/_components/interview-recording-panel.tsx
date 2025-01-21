@@ -51,9 +51,9 @@ export function InterviewRecordingPanel({ userId }: { userId: string }) {
 
   return (
     <section className="p-3 relative">
-      <div className="relative w-full h-full flex flex-col items-center justify-center gap-3">
+      <div className="relative w-full h-full flex flex-col items-center justify-start gap-3">
         {sessionStarted ? (
-          <div className="flex flex-col gap-3 pt-8">
+          <div className="flex flex-col gap-3 pt-1">
             <div className={cn("flex flex-col gap-3 justify-between", recording ? "h-32" : "h-40")}>
               {/* INITIAL + ALIGN CAMERA */}
               {!recording && (
@@ -151,7 +151,7 @@ export function InterviewRecordingPanel({ userId }: { userId: string }) {
               )}
             </div>
             {/* MEDIA */}
-            <div className="w-96 lg:w-[700px]  rounded-xl bg-muted">
+            <div className="w-96 lg:w-[700px] xl:w-[800px] 2xl:w-[1000px]  rounded-xl bg-muted">
               <ReactWebcam
                 className="rounded-xl w-full"
                 ref={webcamRef}

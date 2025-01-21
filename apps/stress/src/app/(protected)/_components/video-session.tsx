@@ -189,7 +189,7 @@ export default function VideoSession() {
       {!stressSession ? (
         <div className="relative w-full h-full flex flex-col items-center justify-center gap-3">
           {sessionStarted ? (
-            <Card className="max-w-5xl m-auto p-3">
+            <Card className="p-3 w-[75vw]">
               <CardHeader className="px-3 py-0 flex flex-col gap-3">
                 {!recording ? (
                   <>
@@ -268,7 +268,7 @@ export default function VideoSession() {
                 )}
               </CardHeader>
               <CardContent className="pt-3 pb-0 px-0">
-                <div className="min-w-[750px] w-full rounded-xl bg-muted">
+                <div className="w-[calc(75vw-theme(spacing.6))] rounded-xl bg-muted">
                   <ReactWebcam
                     className="rounded-xl w-full"
                     ref={webcamRef}

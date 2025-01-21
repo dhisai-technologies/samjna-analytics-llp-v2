@@ -9,7 +9,7 @@ import { ScrollArea } from "@ui/components/ui/scroll-area";
 import { NursingQuestionsPanel } from "./nursing-questions-panel";
 import { NursingRecordingPanel } from "./nursing-recording-panel";
 
-export function NursingTestPanel() {
+export default function NursingTestPanel() {
   const { nursingSession } = useCoreSocket();
   const { nursingTest, questions, userId } = useNursingTest();
   const { logs } = useLogSocket();
@@ -28,13 +28,13 @@ export function NursingTestPanel() {
   return (
     <ResizablePanelGroup direction="horizontal" className="border border-border rounded-md">
       <ResizablePanel defaultSize={25} minSize={20} maxSize={25}>
-        <ScrollArea className="h-[calc(100vh-theme(spacing.44))] bg-sidebar">
+        <ScrollArea className="h-[calc(100vh-theme(spacing.32))] bg-sidebar">
           <NursingQuestionsPanel />
         </ScrollArea>
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel>
-        <ScrollArea className="h-[calc(100vh-theme(spacing.44))]">
+      <ResizablePanel defaultSize={75}>
+        <ScrollArea className="h-[calc(100vh-theme(spacing.32))]">
           <NursingRecordingPanel userId={userId} />
         </ScrollArea>
       </ResizablePanel>

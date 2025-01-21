@@ -2,7 +2,7 @@ import { Brain, Command, Computer, LayoutDashboard, type LucideProps } from "luc
 
 export type AppName = "ADMIN" | "NURSING" | "INTERVIEW";
 
-const isProduction = false;
+const isProduction = true;
 
 export const appConfig = {
   title: "Samjna Analytics LLP",
@@ -41,7 +41,7 @@ export const apps = {
     description: "A platform to manage and analyze stress levels",
     defaultColor: "red",
     Icon: (props: LucideProps) => <Brain {...props} />,
-    api: isProduction ? "https://analytics.samjna.co.in" : "http://localhost:8001",
+    api: isProduction ? "https://analytics-stress.samjna.co.in" : "http://localhost:8001",
   },
   nursing: {
     key: "NURSING" as AppName,

@@ -4,9 +4,11 @@ import type { SearchParams } from "@config/utils";
 import { LogSocketProvider } from "@ui/components/providers/log-socket-provider";
 import { DataError } from "@ui/components/registry/data-error";
 import { DataHeader } from "@ui/components/registry/data-header";
+import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
-import { InterviewPanel } from "./_components/interview-panel";
 import { getInterviewAssessment } from "./_lib/queries";
+
+const InterviewPanel = dynamic(() => import("./_components/interview-panel"), { ssr: false });
 
 export default async function Page({ searchParams }: { searchParams: SearchParams }) {
   if (typeof searchParams.interviewId !== "string" || typeof searchParams.participantId !== "string") {

@@ -4,6 +4,7 @@ import { useNursingTest } from "@/components/providers/nursing-test-provider";
 import NursingLandingImg from "@/lib/images/nursing-landing.png";
 import { getNursingQuestionTypeIcon } from "@/lib/utils/nursing-question";
 import type { NursingQuestion } from "@config/nursing";
+import { apps } from "@config/ui";
 import { CopyToClipboard } from "@ui/components/copy-to-clipboard";
 import { MediaCard } from "@ui/components/media-card";
 import { Badge } from "@ui/components/ui/badge";
@@ -57,7 +58,7 @@ export function NursingQuestionsList() {
           />
         </div>
         <CopyToClipboard
-          text={`${window.location.origin}/auth/assessment?nursingTestId=${nursingTest.id}`}
+          text={`${apps.nursing.url}/auth/assessment?nursingTestId=${nursingTest.id}`}
           className={cn(buttonVariants({ variant: "outline" }))}
         >
           Copy link

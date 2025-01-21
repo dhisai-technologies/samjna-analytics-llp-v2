@@ -83,9 +83,53 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
 
   return (
     <section className="p-3 relative h-[calc(100vh-theme(spacing.44))] items-center justify-center">
-      <div className="relative w-full h-full flex flex-col items-center justify-center gap-3">
+      <div className="relative w-full h-full flex flex-col items-center justify-start gap-3">
         {sessionStarted ? (
-          <div className="flex flex-col gap-3 pt-8">
+          <div className="flex flex-col gap-3 pt-1">
+            {/* MEDIA */}
+            <div className="flex items-center justify-center gap-3">
+              {currentQuestion && !breakTimer && (
+                <>
+                  {["IMAGE", "AUDIO", "VIDEO"].includes(currentQuestion.type) && currentQuestion?.file && (
+                    <MediaCard
+                      type={currentQuestion.type as "IMAGE" | "AUDIO" | "VIDEO"}
+                      src={currentQuestion.file}
+                      className="w-96 lg:w-[700px] xl:w-[800px] 2xl:w-[1000px] aspect-video flex items-center justify-center rounded-lg overflow-hidden"
+                      autoplay={true}
+                      controls={false}
+                      onEnded={() => {
+                        if (count === questions.length) {
+                          setProcessing(true);
+                          setRecording(false);
+                          handleRecording();
+                        } else {
+                          handleNextQuestionWithBreak(count);
+                        }
+                      }}
+                    />
+                  )}
+                </>
+              )}
+              <div
+                className={cn(
+                  "overflow-hidden rounded-xl bg-muted",
+                  GST && count === 27 ? "w-96 lg:w-[700px] xl:w-[800px] 2xl:w-[1000px]" : "absolute w-5 h-5 opacity-0",
+                )}
+              >
+                <ReactWebcam
+                  className="rounded-xl w-full"
+                  ref={webcamRef}
+                  audio={true}
+                  videoConstraints={{
+                    width: 1280,
+                    height: 720,
+                    facingMode: "user",
+                  }}
+                  muted={true}
+                />
+              </div>
+            </div>
+            {/* CONTROLS AND CONTENT */}
             <div
               className={cn(
                 "flex flex-col gap-3 justify-between",
@@ -96,12 +140,6 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
               {!recording && (
                 <>
                   <div className="max-w-lg h-full flex flex-col items-start justify-center overflow-hidden">
-                    <BoxReveal duration={0.5}>
-                      <h2 className="text-lg font-semibold">
-                        {nursingTest.title}
-                        <span className="text-primary">.</span>
-                      </h2>
-                    </BoxReveal>
                     <BoxReveal duration={0.5}>
                       <p className="mt-2 text-sm">
                         Please answer to the questions as <span className="text-primary font-semibold">honestly</span>{" "}
@@ -233,49 +271,6 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
                   )}
                 </>
               )}
-            </div>
-            {/* MEDIA */}
-            <div className="flex items-center justify-center gap-3">
-              {currentQuestion && !breakTimer && (
-                <>
-                  {["IMAGE", "AUDIO", "VIDEO"].includes(currentQuestion.type) && currentQuestion?.file && (
-                    <MediaCard
-                      type={currentQuestion.type as "IMAGE" | "AUDIO" | "VIDEO"}
-                      src={currentQuestion.file}
-                      className="h-[50vh] aspect-video flex items-center justify-center rounded-lg overflow-hidden"
-                      autoplay={true}
-                      controls={false}
-                      onEnded={() => {
-                        if (count === questions.length) {
-                          setProcessing(true);
-                          setRecording(false);
-                          handleRecording();
-                        } else {
-                          handleNextQuestionWithBreak(count);
-                        }
-                      }}
-                    />
-                  )}
-                </>
-              )}
-              <div
-                className={cn(
-                  "overflow-hidden rounded-xl bg-muted",
-                  GST && count === 27 ? "w-96 lg:w-[700px]" : "absolute w-5 h-5 opacity-0",
-                )}
-              >
-                <ReactWebcam
-                  className="rounded-xl w-full"
-                  ref={webcamRef}
-                  audio={true}
-                  videoConstraints={{
-                    width: 1280,
-                    height: 720,
-                    facingMode: "user",
-                  }}
-                  muted={true}
-                />
-              </div>
             </div>
           </div>
         ) : (

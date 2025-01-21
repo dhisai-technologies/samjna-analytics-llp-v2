@@ -78,7 +78,7 @@ export function SiteHeader() {
                 key={i}
                 className={cn(
                   "text-sm h-10 px-4 py-2 border-b-4 rounded-md flex items-center justify-center",
-                  pathname === route.href ? "border-primary " : "border-transparent hover:bg-neutral-200",
+                  pathname === route.href ? "border-primary font-semibold" : "border-transparent hover:bg-neutral-200",
                 )}
               >
                 {route.label}

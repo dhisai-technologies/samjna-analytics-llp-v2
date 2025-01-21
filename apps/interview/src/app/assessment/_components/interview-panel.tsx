@@ -9,7 +9,7 @@ import { ScrollArea } from "@ui/components/ui/scroll-area";
 import { InterviewQuestionsPanel } from "./interview-questions-panel";
 import { InterviewRecordingPanel } from "./interview-recording-panel";
 
-export function InterviewPanel() {
+export default function InterviewPanel() {
   const { interviewSession } = useCoreSocket();
   const { interview, questions, userId } = useInterview();
   const { logs } = useLogSocket();
@@ -28,13 +28,13 @@ export function InterviewPanel() {
   return (
     <ResizablePanelGroup direction="horizontal" className="border border-border rounded-md">
       <ResizablePanel defaultSize={25} minSize={20}>
-        <ScrollArea className="h-[calc(100vh-theme(spacing.44))] bg-sidebar">
+        <ScrollArea className="h-[calc(100vh-theme(spacing.32))] bg-sidebar">
           <InterviewQuestionsPanel />
         </ScrollArea>
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel>
-        <ScrollArea className="h-[calc(100vh-theme(spacing.44))]">
+        <ScrollArea className="h-[calc(100vh-theme(spacing.32))]">
           <InterviewRecordingPanel userId={userId} />
         </ScrollArea>
       </ResizablePanel>
