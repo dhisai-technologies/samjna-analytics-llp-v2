@@ -22,6 +22,7 @@ import {
   DropdownMenuTrigger,
 } from "@ui/components/ui/dropdown-menu";
 import { Input } from "@ui/components/ui/input";
+import { cn } from "@ui/utils";
 import { convertToPascal, getErrorMessage } from "@utils/helpers";
 import { Ellipsis, Eye, PencilLine, Plus, Search, ShieldCheck, ShieldX, Trash } from "lucide-react";
 import Image from "next/image";
@@ -99,7 +100,10 @@ function QuestionCard({ question }: { question: NursingQuestion }) {
       <div className="self-start flex flex-col gap-2">
         <div className="flex items-center gap-3">
           <h3 className="truncate font-medium">{question.title}</h3>
-          <Badge variant={question.active ? "default" : "destructive"} className="text-xs text-[10px]">
+          <Badge
+            variant={question.active ? "default" : "destructive"}
+            className={cn("text-xs text-[10px]", question.active && "bg-green-100 text-green-700 hover:bg-green-200")}
+          >
             {question.active ? "Active" : "Inactive"}
           </Badge>
         </div>

@@ -1,0 +1,167 @@
+[
+	{
+		"uid": "USR-75921682",
+		"email": "nsvegur01@gmail.com",
+		"name": "Nagasai Vegur",
+		"role": "ADMIN",
+		"active": true,
+		"module": "ADMIN",
+		"max_participants": 1,
+		"created_at": "2024-11-26 19:58:14.963842",
+		"updated_at": "2024-11-26 19:58:14.923"
+	},
+	{
+		"uid": "USR-29134630",
+		"email": "samjnaanalytics@gmail.com",
+		"name": "Anjana Dhilip Krishna",
+		"role": "ADMIN",
+		"active": true,
+		"module": "ADMIN",
+		"max_participants": 1,
+		"created_at": "2024-11-26 19:58:15.051167",
+		"updated_at": "2024-11-26 19:58:15.015"
+	},
+	{
+		"uid": "USR-12719047",
+		"email": "dhayalakumar.m@gmail.com",
+		"name": "Dhayalakumar M",
+		"role": "ADMIN",
+		"active": true,
+		"module": "ADMIN",
+		"max_participants": 1,
+		"created_at": "2024-11-26 19:58:15.139944",
+		"updated_at": "2024-11-26 19:58:15.103"
+	},
+	{
+		"uid": "USR-43404017",
+		"email": "vishwathvice@gmail.com",
+		"name": "Vishwath Vice",
+		"role": "ADMIN",
+		"active": true,
+		"module": "ADMIN",
+		"max_participants": 1,
+		"created_at": "2024-11-26 19:58:15.225073",
+		"updated_at": "2024-11-26 19:58:15.188"
+	},
+	{
+		"uid": "USR-03596353",
+		"email": "cs20b1016@iiitdm.ac.in",
+		"name": "Nagasai Vegur",
+		"role": "ORGANIZATION",
+		"active": true,
+		"module": "INTERVIEW",
+		"max_participants": 5,
+		"created_at": "2024-11-26 22:25:24.389707",
+		"updated_at": "2024-11-26 22:25:22.639"
+	},
+	{
+		"uid": "USR-56276210",
+		"email": "cs20b1016@iiitdm.ac.in",
+		"name": "Nagasai Vegur",
+		"role": "ORGANIZATION",
+		"active": true,
+		"module": "STRESS",
+		"max_participants": 3,
+		"created_at": "2024-11-26 22:25:49.653835",
+		"updated_at": "2024-11-26 22:25:47.906"
+	},
+	{
+		"uid": "USR-52815298",
+		"email": "dhayalakumar.m@gmail.com",
+		"name": "Dhayal",
+		"role": "ORGANIZATION",
+		"active": true,
+		"module": "INTERVIEW",
+		"max_participants": 2,
+		"created_at": "2024-11-27 02:22:59.270028",
+		"updated_at": "2024-11-27 02:22:57.527"
+	},
+	{
+		"uid": "USR-63172926",
+		"email": "dhayalakumar.m@gmail.com",
+		"name": "Dhayal",
+		"role": "ORGANIZATION",
+		"active": true,
+		"module": "STRESS",
+		"max_participants": 2,
+		"created_at": "2024-11-27 02:31:27.671466",
+		"updated_at": "2024-11-27 02:31:25.926"
+	},
+	{
+		"uid": "USR-82285997",
+		"email": "samjnaanalytics@gmail.com",
+		"name": "samjna",
+		"role": "ORGANIZATION",
+		"active": true,
+		"module": "STRESS",
+		"max_participants": 5,
+		"created_at": "2024-11-27 02:40:26.601178",
+		"updated_at": "2024-11-27 02:41:30.186"
+	},
+	{
+		"uid": "USR-14088416",
+		"email": "samjnaanalytics@gmail.com",
+		"name": "Samjana1",
+		"role": "ORGANIZATION",
+		"active": true,
+		"module": "INTERVIEW",
+		"max_participants": 20,
+		"created_at": "2024-11-27 02:44:35.539248",
+		"updated_at": "2024-11-27 02:44:33.794"
+	},
+	{
+		"uid": "USR-90715946",
+		"email": "dhilipkrishna@gmail.com",
+		"name": "Dhilip",
+		"role": "ORGANIZATION",
+		"active": true,
+		"module": "INTERVIEW",
+		"max_participants": 10,
+		"created_at": "2024-12-04 13:18:41.202159",
+		"updated_at": "2024-12-04 13:18:39.593"
+	},
+	{
+		"uid": "USR-28739133",
+		"email": "dhilipkrishna@indexinvesting.in",
+		"name": "Apta",
+		"role": "ORGANIZATION",
+		"active": true,
+		"module": "INTERVIEW",
+		"max_participants": 30,
+		"created_at": "2024-12-04 16:48:32.047052",
+		"updated_at": "2024-12-04 16:48:30.439"
+	},
+	{
+		"uid": "USR-67460294",
+		"email": "sampathpradeep1201@gmail.com",
+		"name": "Sampath Pradeep",
+		"role": "ORGANIZATION",
+		"active": true,
+		"module": "INTERVIEW",
+		"max_participants": 5,
+		"created_at": "2024-12-05 04:28:22.358563",
+		"updated_at": "2024-12-05 04:28:20.755"
+	},
+	{
+		"uid": "USR-44876930",
+		"email": "vishwathvice@gmail.com",
+		"name": "Vishwath P",
+		"role": "ORGANIZATION",
+		"active": true,
+		"module": "STRESS",
+		"max_participants": 1,
+		"created_at": "2024-12-14 05:13:58.052558",
+		"updated_at": "2024-12-14 05:13:56.538"
+	},
+	{
+		"uid": "USR-30053216",
+		"email": "sampathpradeep1201@gmail.com",
+		"name": "Sampath Pradeep",
+		"role": "ORGANIZATION",
+		"active": true,
+		"module": "STRESS",
+		"max_participants": 5,
+		"created_at": "2025-01-09 05:22:16.602407",
+		"updated_at": "2025-01-09 05:22:15.494"
+	}
+]
