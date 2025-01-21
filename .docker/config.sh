@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define services and their corresponding ports using indexed arrays
-services=("services/core" "services/analytics" "apps/admin" "apps/interview" "apps/nursing")
-ports=(5001 5002 3001 3002 3003)
+services=("services/core" "services/analytics" "apps/site" "apps/admin" "apps/stress" "apps/nursing" "apps/interview")
+ports=(8000 8001 3000 3001 3002 3003 3004)
 network_name="samjna-analytics-llp-v1.1"
 prefix="samjna-"
 

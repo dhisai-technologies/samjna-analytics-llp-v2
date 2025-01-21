@@ -15,7 +15,7 @@ FROM base AS pruner
 
 WORKDIR /app
 COPY . .
-RUN turbo prune --scope=@apps/admin --docker
+RUN turbo prune --scope=@apps/stress --docker
 
 # Build
 FROM base AS builder
@@ -39,7 +39,7 @@ RUN pnpm install --no-frozen-lockfile --force
 # Copy source code of isolated subworkspace
 COPY --from=pruner /app/out/full/ .
 
-RUN turbo build --filter=@apps/admin
+RUN turbo build --filter=@apps/stress
 RUN --mount=type=cache,id=pnpm,target=~/.pnpm-store pnpm prune --prod --no-optional
 RUN rm -rf ./**/*/src
 
@@ -54,13 +54,13 @@ WORKDIR /app
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder --chown=nextjs:nodejs /app/apps/admin/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/apps/admin/.next/static ./apps/admin/.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/apps/admin/public ./apps/admin/public
+COPY --from=builder --chown=nextjs:nodejs /app/apps/stress/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/apps/stress/.next/static ./apps/stress/.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/apps/stress/public ./apps/stress/public
 
 ARG PORT=3001
 ENV PORT=${PORT}
 ENV NODE_ENV=production
 EXPOSE ${PORT}
 
-CMD ["node", "apps/admin/server.js"]
+CMD ["node", "apps/stress/server.js"]
