@@ -38,7 +38,7 @@ async def websocket_endpoint(websocket: WebSocket, uid: str):
 # Stress Module
 
 # API route for stress
-@app.post(f"/{service_name}/analyze/v1")
+@app.post(f"/{service_name}/analyze/stress")
 async def stress_controller(background_tasks: BackgroundTasks, uid: str = Form(...), count : str = Form(...), final : str = Form(...), user_id: str = Form(...), file_or_url: tuple = Depends(get_file_or_url)):
     files, url = file_or_url
     count = int(count)

@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className="bg-custom-background">
+      <body className="bg-custom-background text-foreground">
         <GlobalProvider>
           <SiteHeader />
           <ScrollArea className="h-[calc(100vh-theme(spacing.14))]">

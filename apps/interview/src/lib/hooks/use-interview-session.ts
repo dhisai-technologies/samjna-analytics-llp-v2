@@ -1,14 +1,14 @@
 "use client";
 
-import { createFileFromBlob } from "@/lib/utils/blob";
 import { useCoreSocket } from "@ui/components/providers/core-socket-provider";
 import { useLogSocket } from "@ui/components/providers/log-socket-provider";
+import { createFileFromBlob } from "@utils/helpers";
 import fixWebmDuration from "fix-webm-duration";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type ReactWebcam from "react-webcam";
 import RecordRTC from "recordrtc";
 import { useInterview } from "../../components/providers/interview-provider";
-import { analyzeVideo, createInterviewSession } from "../actions";
+import { analyzeInterviewVideo, createInterviewSession } from "../actions";
 
 export function useInterviewSession(userId: string) {
   const { joinInterviewSession, interviewSession } = useCoreSocket();
@@ -72,7 +72,7 @@ export function useInterviewSession(userId: string) {
         if (question) {
           formData.append("question_id", question.id);
         }
-        await analyzeVideo(formData, analyze);
+        await analyzeInterviewVideo(formData, analyze);
         if (count === questions.length) {
           window.location.reload();
         }

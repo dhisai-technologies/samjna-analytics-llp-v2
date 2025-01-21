@@ -45,7 +45,7 @@ const links = [
   },
   {
     name: "AI Models",
-    url: "/models",
+    url: "/ai-models",
     icon: Package,
     active: "default",
   },

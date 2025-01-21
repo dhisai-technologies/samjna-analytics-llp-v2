@@ -8,16 +8,17 @@ import { VerifyOtpForm } from "./verify-otp-form";
 
 interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   module: Module;
+  hideAssessmentLink?: boolean;
 }
 
-export function LoginForm({ module, className, ...props }: LoginFormProps) {
+export function LoginForm({ module, className, hideAssessmentLink, ...props }: LoginFormProps) {
   const [email, setEmail] = useState<string>();
   return (
     <div className={cn("", className)} {...props}>
       {email ? (
         <VerifyOtpForm email={email} setEmail={setEmail} module={module} />
       ) : (
-        <RequestOtpForm setEmail={setEmail} module={module} />
+        <RequestOtpForm setEmail={setEmail} module={module} hideAssessmentLink={hideAssessmentLink} />
       )}
     </div>
   );

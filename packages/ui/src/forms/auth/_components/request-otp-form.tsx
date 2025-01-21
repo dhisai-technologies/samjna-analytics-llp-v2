@@ -17,9 +17,10 @@ import type { VerifyUserOtpSchema } from "../_lib/validations";
 interface RequestOtpFormProps {
   setEmail: React.Dispatch<React.SetStateAction<string | undefined>>;
   module: Module;
+  hideAssessmentLink?: boolean;
 }
 
-export function RequestOtpForm({ setEmail, module }: RequestOtpFormProps) {
+export function RequestOtpForm({ setEmail, module, hideAssessmentLink }: RequestOtpFormProps) {
   const form = useForm<VerifyUserOtpSchema>({
     defaultValues: {
       email: "",
@@ -66,7 +67,7 @@ export function RequestOtpForm({ setEmail, module }: RequestOtpFormProps) {
         <input hidden {...form.register("otp")} />
         <DataFormError />
         <FormSubmission />
-        {module !== "ADMIN" && (
+        {!hideAssessmentLink && (
           <Link href="/auth/assessment" className={buttonVariants({ variant: "link" })}>
             Take the assessment
             <ArrowUpRight className="w-4 h-4 ml-1" />

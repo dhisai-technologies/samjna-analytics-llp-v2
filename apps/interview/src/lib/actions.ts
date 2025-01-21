@@ -42,7 +42,7 @@ export async function deleteInterviewSession(sessionId: string) {
   };
 }
 
-export async function analyzeVideo(formData: FormData, analyze = true) {
+export async function analyzeInterviewVideo(formData: FormData, analyze = true) {
   if (!analyze) {
     const response = await retrieve(`${config.CORE_API_URL}/v1/files/analytics`, {
       method: "POST",

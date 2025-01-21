@@ -9,7 +9,7 @@ export default function Page() {
       <div className="flex h-[calc(100vh-theme(spacing.14))] items-center justify-center gap-32">
         <Image src="/landing.png" alt="Landing" width={500} height={500} className="w-96 h-auto" />
         <div className="space-y-3">
-          <h1 className="font-bold text-4xl">The face is the index of the mind</h1>
+          <h1 className="font-bold text-4xl text-foreground">The face is the index of the mind</h1>
           <p className="text-muted-foreground pb-3">
             Not feeling your best? We are here to help you recognize your inner self
           </p>

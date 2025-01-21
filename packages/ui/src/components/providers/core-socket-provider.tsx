@@ -1,6 +1,7 @@
 import type { Notification } from "@config/core";
 import type { InterviewSession } from "@config/interview";
 import type { NursingSession } from "@config/nursing";
+import type { StressSession } from "@config/stress";
 import { appConfig } from "@config/ui";
 import type React from "react";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
@@ -9,6 +10,9 @@ import { type Socket, io } from "socket.io-client";
 interface CoreSocketContextType {
   notifications: Notification[];
   setNotifications: React.Dispatch<React.SetStateAction<Notification[]>>;
+  stressSession?: StressSession;
+  setStressSession: React.Dispatch<React.SetStateAction<StressSession | undefined>>;
+  joinStressSession: (uid: string) => void;
   interviewSession?: InterviewSession;
   setInterviewSession: React.Dispatch<React.SetStateAction<InterviewSession | undefined>>;
   joinInterviewSession: (uid: string) => void;
@@ -25,9 +29,17 @@ export function CoreSocketProvider({
   children: React.ReactNode;
 }) {
   const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [stressSession, setStressSession] = useState<StressSession>();
   const [interviewSession, setInterviewSession] = useState<InterviewSession>();
   const [nursingSession, setNursingSession] = useState<NursingSession>();
   const [socket, setSocket] = useState<Socket>();
+  const joinStressSession = useCallback(
+    (uid: string) => {
+      if (!socket) return;
+      socket.emit("join-stress-session", uid);
+    },
+    [socket],
+  );
   const joinInterviewSession = useCallback(
     (uid: string) => {
       if (!socket) return;
@@ -54,6 +66,9 @@ export function CoreSocketProvider({
         setNotifications(notifications);
       });
       socket.on("notification", (notification: Notification) => setNotifications((prev) => [...prev, notification]));
+      socket.on("stress-session", (session: StressSession) => {
+        setStressSession(session);
+      });
       socket.on("interview-session", (session: InterviewSession) => {
         setInterviewSession(session);
       });
@@ -67,6 +82,9 @@ export function CoreSocketProvider({
       value={{
         notifications,
         setNotifications,
+        stressSession,
+        setStressSession,
+        joinStressSession,
         interviewSession,
         setInterviewSession,
         joinInterviewSession,

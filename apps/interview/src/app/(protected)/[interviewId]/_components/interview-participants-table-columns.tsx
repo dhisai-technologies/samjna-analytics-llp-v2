@@ -13,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@ui/components/ui/dropdown-menu";
+import { cn } from "@ui/utils";
 import { getErrorMessage } from "@utils/helpers";
 import { format } from "date-fns";
 import { Ellipsis, PieChart, ShieldCheck, ShieldX } from "lucide-react";
@@ -33,7 +34,10 @@ export function getColumns(interviewId: string): ColumnDef<InterviewParticipant>
       cell: ({ row }) => {
         return (
           <div className="flex w-[6.25rem] items-center">
-            <Badge variant={row.original.active ? "default" : "destructive"}>
+            <Badge
+              variant={row.original.active ? "default" : "destructive"}
+              className={cn(row.original.active && "bg-green-100 text-green-700 hover:bg-green-200")}
+            >
               {row.original.active ? "Active" : "Inactive"}
             </Badge>
           </div>

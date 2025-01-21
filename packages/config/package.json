@@ -4,9 +4,10 @@
   "exports": {
     "./ui/*": "./src/ui/index.ts",
     "./core/*": "./src/core/index.ts",
-    "./interview/*": "./src/interview/index.ts",
+    "./utils/*": "./src/utils/index.ts",
+    "./stress/*": "./src/stress/index.ts",
     "./nursing/*": "./src/nursing/index.ts",
-    "./utils/*": "./src/utils/index.ts"
+    "./interview/*": "./src/interview/index.ts"
   },
   "scripts": {
     "lint": "biome lint .",

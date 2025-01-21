@@ -134,22 +134,22 @@ export const updateStressSession: AppController = catchAsync(async (req, res) =>
 });
 
 export const deleteStressSessionSchema = z.object({
-  params: z.object({
-    id: z.string(),
+  body: z.object({
+    sessionId: z.string(),
   }),
 });
 
 export const deleteStressSession: AppController = catchAsync(async (req, res) => {
-  const { id } = req.params as z.infer<typeof deleteStressSessionSchema>["params"];
-  if (!id) {
+  const { sessionId } = req.params as z.infer<typeof deleteStressSessionSchema>["body"];
+  if (!sessionId) {
     throw new AppError("Session id is required", StatusCodes.BAD_REQUEST);
   }
   const session = await db.query.stressSessions.findFirst({
-    where: eq(stressSessions.id, id),
+    where: eq(stressSessions.id, sessionId),
   });
   if (!session) {
     throw new AppError("Session not found", StatusCodes.NOT_FOUND);
   }
-  await db.delete(stressSessions).where(eq(stressSessions.id, id));
+  await db.delete(stressSessions).where(eq(stressSessions.id, sessionId));
   return res.status(StatusCodes.OK).json({ message: "Session deleted" });
 });

@@ -1,7 +1,7 @@
 "use client";
 
 import { useNursingTest } from "@/components/providers/nursing-test-provider";
-import { analyzeVideo, createNursingSession } from "@/lib/actions";
+import { analyzeNursingVideo, createNursingSession } from "@/lib/actions";
 import NursingLandingImg from "@/lib/images/nursing-landing.png";
 import { FileUploader } from "@ui/components/file-uploader";
 import { useCoreSocket } from "@ui/components/providers/core-socket-provider";
@@ -104,7 +104,7 @@ export function NursingLanding() {
                 formData.append("final", "true");
                 formData.append("test", nursingTest.level === "INTERMEDIATE" ? "true" : "false");
                 formData.append("question_id", "combined");
-                await analyzeVideo(formData);
+                await analyzeNursingVideo(formData);
               }}
             >
               Upload

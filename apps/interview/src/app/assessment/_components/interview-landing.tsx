@@ -1,7 +1,7 @@
 "use client";
 
 import { useInterview } from "@/components/providers/interview-provider";
-import { analyzeVideo, createInterviewSession } from "@/lib/actions";
+import { analyzeInterviewVideo, createInterviewSession } from "@/lib/actions";
 import InterviewLandingImg from "@/lib/images/interview-landing.png";
 import { FileUploader } from "@ui/components/file-uploader";
 import { useCoreSocket } from "@ui/components/providers/core-socket-provider";
@@ -104,7 +104,7 @@ export function InterviewLanding() {
                 formData.append("final", "true");
                 formData.append("test", interview.level === "INTERMEDIATE" ? "true" : "false");
                 formData.append("question_id", "combined");
-                await analyzeVideo(formData);
+                await analyzeInterviewVideo(formData);
               }}
             >
               Upload

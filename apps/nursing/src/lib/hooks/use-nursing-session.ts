@@ -1,15 +1,15 @@
 "use client";
 
 import { useNursingTest } from "@/components/providers/nursing-test-provider";
-import { createFileFromBlob } from "@/lib/utils/blob";
 import { useCoreSocket } from "@ui/components/providers/core-socket-provider";
 import { useLogSocket } from "@ui/components/providers/log-socket-provider";
+import { createFileFromBlob } from "@utils/helpers";
 import { speakText } from "@utils/helpers";
 import fixWebmDuration from "fix-webm-duration";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type ReactWebcam from "react-webcam";
 import RecordRTC from "recordrtc";
-import { analyzeVideo, createNursingSession, uploadAnswer } from "../actions";
+import { analyzeNursingVideo, createNursingSession, uploadAnswer } from "../actions";
 
 export function useNursingSession(userId: string) {
   const { joinNursingSession, nursingSession } = useCoreSocket();
@@ -61,7 +61,7 @@ export function useNursingSession(userId: string) {
         if (question) {
           formData.append("question_id", question.id);
         }
-        await analyzeVideo(formData, analyze);
+        await analyzeNursingVideo(formData, analyze);
       });
     },
     [userId, questions, nursingTest, analyze],
