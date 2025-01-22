@@ -37,17 +37,17 @@ export const stressQuestions: Word[][] = [
       .split(" ")
       .map((text) => ({ text, className: defaultQuestionClass })),
   ],
-  // [
-  //   ..."Can you tell us about a recent event which made you really"
-  //     .split(" ")
-  //     .map((text) => ({ text, className: defaultQuestionClass })),
-  //   { text: "happy?", className: highlightQuestionClass },
-  // ],
-  // [
-  //   ..."What was the last time you were really".split(" ").map((text) => ({ text, className: defaultQuestionClass })),
-  //   { text: "impatient", className: highlightQuestionClass },
-  //   ..."about something?".split(" ").map((text) => ({ text, className: defaultQuestionClass })),
-  // ],
+  [
+    ..."Can you tell us about a recent event which made you really"
+      .split(" ")
+      .map((text) => ({ text, className: defaultQuestionClass })),
+    { text: "happy?", className: highlightQuestionClass },
+  ],
+  [
+    ..."What was the last time you were really".split(" ").map((text) => ({ text, className: defaultQuestionClass })),
+    { text: "impatient", className: highlightQuestionClass },
+    ..."about something?".split(" ").map((text) => ({ text, className: defaultQuestionClass })),
+  ],
   // [
   //   ..."What makes you a very".split(" ").map((text) => ({ text, className: defaultQuestionClass })),
   //   ..."special and unique".split(" ").map((text) => ({ text, className: highlightQuestionClass })),
