@@ -47,13 +47,13 @@ spec:
             httpGet:
               path: /analytics-service/health
               port: 8001
-            initialDelaySeconds: 10
+            initialDelaySeconds: 300
             periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /analytics-service/health
               port: 8001
-            initialDelaySeconds: 5
+            initialDelaySeconds: 300
             periodSeconds: 5
 ---
 apiVersion: v1
