@@ -1,6 +1,5 @@
 import { Brain, Command, Computer, LayoutDashboard, type LucideProps } from "lucide-react";
-
-export type AppName = "ADMIN" | "NURSING" | "INTERVIEW";
+import type { Module } from "../core";
 
 const isProduction = true;
 
@@ -24,7 +23,7 @@ export const appConfig = {
 
 export const apps = {
   admin: {
-    key: "ADMIN" as AppName,
+    key: "ADMIN" as Module,
     name: "Prabandh",
     englishName: "Admin",
     url: isProduction ? "https://prabandh.samjna.co.in" : "http://localhost:3001",
@@ -34,7 +33,7 @@ export const apps = {
     api: isProduction ? "https://core.samjna.co.in" : "http://localhost:8000",
   },
   stress: {
-    key: "STRESS" as AppName,
+    key: "STRESS" as Module,
     name: "Chinta",
     englishName: "Stress",
     url: isProduction ? "https://chinta.samjna.co.in" : "http://localhost:3002",
@@ -44,7 +43,7 @@ export const apps = {
     api: isProduction ? "https://analytics-stress.samjna.co.in" : "http://localhost:8001",
   },
   nursing: {
-    key: "NURSING" as AppName,
+    key: "NURSING" as Module,
     name: "Posha",
     englishName: "Nursing",
     url: isProduction ? "https://posha.samjna.co.in" : "http://localhost:3003",
@@ -54,7 +53,7 @@ export const apps = {
     api: isProduction ? "https://analytics.samjna.co.in" : "http://localhost:8001",
   },
   interview: {
-    key: "INTERVIEW" as AppName,
+    key: "INTERVIEW" as Module,
     name: "Udvega",
     englishName: "Interview",
     url: isProduction ? "https://udvega.samjna.co.in" : "http://localhost:3004",
