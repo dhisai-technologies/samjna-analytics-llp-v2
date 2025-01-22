@@ -6,3 +6,4 @@ dist/
 .turbo/
 .vscode
 .next/
+secrets.yaml
