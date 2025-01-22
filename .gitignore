@@ -55,5 +55,3 @@ venv/
 .venv/
 
 __pycache__
-
-deploy-analytics.sh
