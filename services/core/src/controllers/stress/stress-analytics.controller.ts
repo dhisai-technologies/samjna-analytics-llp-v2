@@ -3,6 +3,7 @@ import { io } from "@/index";
 import type { MulterBlobFile } from "@/types";
 import { getSessionWithSignedUrls, saveAnalyticsFile } from "@/utils/analytics";
 import { getBlobUrl } from "@/utils/blob";
+import { mailStressReport } from "@/utils/report";
 import { files, stressSessions } from "@lib/database";
 import { type AppController, AppError, StatusCodes, catchAsync } from "@lib/utils/errors";
 import { eq } from "drizzle-orm";
@@ -50,6 +51,9 @@ export const updateStressAnalytics: AppController = catchAsync(async (req, res) 
   if (updated) {
     const analytics = await getSessionWithSignedUrls(updated);
     io.to(`stress-session-${analytics.uid}`).emit("stress-session", analytics);
+    if (combined) {
+      mailStressReport(updated);
+    }
   }
   return res.status(StatusCodes.OK).json({ message: "Session analytics updated" });
 });
