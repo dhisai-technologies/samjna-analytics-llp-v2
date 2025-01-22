@@ -6,7 +6,36 @@ metadata:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: analytics
+                port:
+                  number: 8001
     - host: analytics-stress.samjna.co.in
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: analytics
+                port:
+                  number: 8001
+    - host: localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: analytics
+                port:
+                  number: 8001
+    - host: host.docker.internal
       http:
         paths:
           - path: /
