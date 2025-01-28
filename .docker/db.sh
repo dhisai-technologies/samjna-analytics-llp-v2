@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Variables
-CONTAINER_NAME="samjna-analytics-llp-v1.1-postgres"
+CONTAINER_NAME="samjna-analytics-llp-v2-postgres"
 POSTGRES_IMAGE="postgres:15"
 POSTGRES_USER="user"
 POSTGRES_PASSWORD="password"
 POSTGRES_DB="db"
-VOLUME_NAME="samjna-analytics-llp-v1.1-volume"
+VOLUME_NAME="samjna-analytics-llp-v2-volume"
 HOST_PORT=5432
 CONTAINER_PORT=5432
 
