@@ -1,7 +1,7 @@
 import { Brain, Command, Computer, LayoutDashboard, type LucideProps } from "lucide-react";
 import type { Module } from "../core";
 
-const isProduction = false;
+const isProduction = true;
 
 export const appConfig = {
   title: "Samjna Analytics LLP",
