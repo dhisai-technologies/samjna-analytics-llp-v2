@@ -2,7 +2,8 @@ import { cookies } from "next/headers";
 
 export async function retrieve(input: string | URL | globalThis.Request, init?: RequestInit): Promise<Response> {
   const cookie = cookies().get("session");
-  return fetch(input, {
+  console.log(`[${new Date().toISOString()}] Fetching URL: ${input.toString()}`);
+  const response = await fetch(input, {
     ...init,
     headers: {
       Authorization: `Bearer ${cookie?.value}`,
@@ -10,4 +11,6 @@ export async function retrieve(input: string | URL | globalThis.Request, init?: 
       ...init?.headers,
     },
   });
+  console.log(`[${new Date().toISOString()}] Fetched URL: ${input.toString()} with status ${response.status}`);
+  return response;
 }
