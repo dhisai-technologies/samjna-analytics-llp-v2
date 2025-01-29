@@ -34,7 +34,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
       />
       <div className="px-3 lg:px-6">
         <NursingTestProvider nursingTest={nursingTest} questions={questions} userId={searchParams.participantId}>
-          <LogSocketProvider url={app.api}>
+          <LogSocketProvider url={app.socket}>
             <NursingTestPanel />
           </LogSocketProvider>
         </NursingTestProvider>

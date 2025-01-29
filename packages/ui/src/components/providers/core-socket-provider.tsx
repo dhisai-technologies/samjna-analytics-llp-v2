@@ -55,7 +55,7 @@ export function CoreSocketProvider({
     [socket],
   );
   useEffect(() => {
-    const socket = io(appConfig.api.url, {
+    const socket = io(appConfig.api.socket, {
       path: `/${appConfig.api.services.core}/socket.io`,
       withCredentials: true,
     });
