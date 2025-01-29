@@ -11,7 +11,7 @@ RUN pip install --default-timeout=100 --no-cache-dir --upgrade -r /app/requireme
 
 COPY ./services/analytics/app /app/app
 
-ARG PORT=5002
+ARG PORT=8001
 ENV PORT=${PORT}
 EXPOSE ${PORT}
 
