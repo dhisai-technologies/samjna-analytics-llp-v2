@@ -8,7 +8,7 @@ export default function Page() {
   const app = apps.stress;
   return (
     <main className="relative w-full h-[calc(100vh-theme(spacing.14))] bg-background ">
-      <LogSocketProvider url={app.socket}>
+      <LogSocketProvider url={app.api.socket}>
         <VideoSession />
       </LogSocketProvider>
     </main>

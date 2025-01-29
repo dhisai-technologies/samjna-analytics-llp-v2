@@ -34,7 +34,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
       />
       <div className="px-3 lg:px-6">
         <InterviewProvider interview={interview} questions={questions} userId={searchParams.participantId}>
-          <LogSocketProvider url={app.socket}>
+          <LogSocketProvider url={app.api.socket}>
             <InterviewPanel />
           </LogSocketProvider>
         </InterviewProvider>
