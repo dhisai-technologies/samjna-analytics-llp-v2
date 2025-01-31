@@ -1,5 +1,5 @@
 import { PersonCard } from "./_components/person-card";
-import { founders, teamMembers } from "./_lib/data";
+import { founders, teamMembers, technicalAdvisors } from "./_lib/data";
 
 export default function Page() {
   return (
@@ -13,10 +13,18 @@ export default function Page() {
             ))}
           </div>
         </section>
-        <section>
+        <section className="mb-16">
           <h2 className="text-3xl font-semibold mb-8">Our Team</h2>
           <div className="space-y-8">
             {teamMembers.map((member) => (
+              <PersonCard key={member.name} {...member} />
+            ))}
+          </div>
+        </section>
+        <section>
+          <h2 className="text-3xl font-semibold mb-8">Our Technical Advisors</h2>
+          <div className="space-y-8">
+            {technicalAdvisors.map((member) => (
               <PersonCard key={member.name} {...member} />
             ))}
           </div>

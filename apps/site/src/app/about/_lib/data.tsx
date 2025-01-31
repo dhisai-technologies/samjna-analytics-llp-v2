@@ -1,4 +1,5 @@
 import AnjanaDhilipKrishna from "@/lib/images/anjana-dhilip-krishna.jpeg";
+import NoorMahammadShak from "@/lib/images/noor-mahammad-shak.jpeg";
 import PradeepSampath from "@/lib/images/pradeep-sampath.jpeg";
 import SitaPradeep from "@/lib/images/sita-pradeep.jpeg";
 import Image from "next/image";
@@ -6,7 +7,7 @@ import Image from "next/image";
 export const founders = [
   {
     name: "Anjana Dhilip Krishna",
-    role: "Founder",
+    role: "Co-Founder",
     description:
       "A Convergence of Engineering Acumen, Entrepreneurial Success, HR Expertise, and Psychological Insight. Her project at IIT Madras to solve bird hits at airports was a testament to her innovative problem-solving skills and engineering expertise. As a Master's in Psychology, she is also a member of the American Psychological Association (APA).",
     image: (
@@ -54,6 +55,24 @@ export const teamMembers = [
       <Image
         src="/placeholder.svg"
         alt="Vishwath Parthasarathy"
+        width={300}
+        height={300}
+        className="object-cover w-full h-full"
+      />
+    ),
+  },
+];
+
+export const technicalAdvisors = [
+  {
+    name: "Dr. Noor Mahammad Shak",
+    role: "Mentor",
+    description:
+      "Dr. Noor Mahammad Shak  is an Associate Professor at IIITDM Kancheepuram with extensive experience in academia and research. He holds a PhD in Computer Science and Engineering from IIT Madras and has expertise in high-performance computing, VLSI architectures, network system design, and reconfigurable computing. His research focuses on artificial intelligence and machine learning, advanced algorithms and architectures for packet processing, DSP, and reversible circuit design.",
+    image: (
+      <Image
+        src={NoorMahammadShak}
+        alt="Noor Mahammad Shak"
         width={300}
         height={300}
         className="object-cover w-full h-full"

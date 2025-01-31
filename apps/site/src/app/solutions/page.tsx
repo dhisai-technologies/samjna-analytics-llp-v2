@@ -4,20 +4,17 @@ import { Brain, Command, Computer } from "lucide-react";
 export default function Page() {
   const solutions = [
     {
-      title: "Poshana",
-      description: "A platform to conduct and analyze nursing tests",
+      title: "Poshanam",
       icon: Command,
       color: "text-green-500",
     },
     {
-      title: "Stress",
-      description: "Empowering mental wellness and resilience",
+      title: "Chinta",
       icon: Brain,
       color: "text-blue-500",
     },
     {
       title: "Shabdhkosh",
-      description: "Unlocking language with comprehensive vocabulary",
       icon: Computer,
       color: "text-yellow-500",
     },
@@ -29,10 +26,9 @@ export default function Page() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {solutions.map((solution) => (
             <CrossPatternCard key={solution.title} className="border shadow-xl">
-              <CrossPatternCardBody>
+              <CrossPatternCardBody className="flex flex-col items-center justify-center text-center">
                 <solution.icon size={28} className={solution.color} />
                 <h3 className="text-lg font-bold mb-1 mt-3 text-foreground">{solution.title}</h3>
-                <p className="text-wrap text-sm text-foreground/60">{solution.description}</p>
               </CrossPatternCardBody>
             </CrossPatternCard>
           ))}
