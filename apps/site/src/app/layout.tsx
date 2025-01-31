@@ -4,8 +4,8 @@ import { appConfig } from "@config/ui";
 import { GlobalProvider } from "@ui/components/providers/global-provider";
 import { ScrollArea } from "@ui/components/ui/scroll-area";
 import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
+import { Nunito } from "next/font/google";
 import "@ui/globals.css";
 
 export const metadata: Metadata = {
@@ -13,13 +13,15 @@ export const metadata: Metadata = {
   description: appConfig.description,
 };
 
+const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" });
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${nunito.className} ${GeistMono.variable}`}>
       <body className="bg-custom-background text-foreground">
         <GlobalProvider>
           <SiteHeader />

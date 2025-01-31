@@ -1,15 +1,13 @@
 "use client";
 
-import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@ui/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@ui/components/ui/sheet";
-import { useState } from "react";
-
-import { appConfig } from "@config/ui";
 import { Icons } from "@ui/components/icons";
 import { buttonVariants } from "@ui/components/ui/button";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@ui/components/ui/navigation-menu";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@ui/components/ui/sheet";
 import { cn } from "@ui/utils";
 import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 interface RouteProps {
   href: string;
@@ -29,13 +27,13 @@ export function SiteHeader() {
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-background-2 border-neutral-300">
       <NavigationMenu className="mx-auto">
-        <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between">
+        <NavigationMenuList className="container h-20 px-4 w-screen flex justify-between">
           <NavigationMenuItem className="flex">
             <a rel="noreferrer noopener" href="/" className="ml-2 flex items-center gap-2">
-              <Icons.logo className="h-10 w-10 text-primary" />
+              <Icons.logo className="h-12 w-12 text-primary" />
               <div>
-                <h1 className="font-bold">{appConfig.title}</h1>
-                <p className="text-xs text-muted-foreground">{appConfig.description}</p>
+                <h1 className="font-bold text-4xl">samjna</h1>
+                <p className="text-sm text-muted-foreground">WORDS & BEYOND</p>
               </div>
             </a>
           </NavigationMenuItem>

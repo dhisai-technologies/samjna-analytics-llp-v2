@@ -1,10 +1,42 @@
+import { CrossPatternCard, CrossPatternCardBody } from "@ui/components/cross-pattern-card";
+import { Brain, Command, Computer } from "lucide-react";
+
 export default function Page() {
+  const solutions = [
+    {
+      title: "Poshana",
+      description: "A platform to conduct and analyze nursing tests",
+      icon: Command,
+      color: "text-green-500",
+    },
+    {
+      title: "Stress",
+      description: "Empowering mental wellness and resilience",
+      icon: Brain,
+      color: "text-blue-500",
+    },
+    {
+      title: "Shabdhkosh",
+      description: "Unlocking language with comprehensive vocabulary",
+      icon: Computer,
+      color: "text-yellow-500",
+    },
+  ];
   return (
     <main className="container mx-auto">
-      <div className="flex h-[calc(100vh-theme(spacing.14))] items-center justify-center">
-        <p className="text-center text-xl text-muted-foreground font-medium">
-          Website under modification. It will be up shortly...
-        </p>
+      <div className="flex h-[calc(100vh-theme(spacing.14))] items-center justify-center flex-col">
+        <h2 className="text-3xl font-bold text-center mb-12">Our Solutions</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {solutions.map((solution) => (
+            <CrossPatternCard key={solution.title} className="border shadow-xl">
+              <CrossPatternCardBody>
+                <solution.icon size={28} className={solution.color} />
+                <h3 className="text-lg font-bold mb-1 mt-3 text-foreground">{solution.title}</h3>
+                <p className="text-wrap text-sm text-foreground/60">{solution.description}</p>
+              </CrossPatternCardBody>
+            </CrossPatternCard>
+          ))}
+        </div>
       </div>
     </main>
   );

@@ -1,4 +1,3 @@
-import { apps } from "@config/ui";
 import { Button } from "@ui/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -14,7 +13,7 @@ export default function Page() {
             Not feeling your best? We are here to help you recognize your inner self
           </p>
           <Button asChild>
-            <a href={`${apps.stress.url}/auth/login`}>
+            <a href="/">
               <span className="font-medium">Recognize Yourself</span>
               <ArrowRight className="ml-1 size-4" />
             </a>

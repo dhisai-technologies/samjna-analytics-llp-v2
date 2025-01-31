@@ -1,9 +1,9 @@
 import { Brain, Command, Computer, LayoutDashboard, type LucideProps } from "lucide-react";
 import type { Module } from "../core";
 
-const isProduction = false;
-// const host = "localhost";
-const host = "host.docker.internal";
+const isProduction = true;
+const host = "localhost";
+// const host = "host.docker.internal";
 
 export const appConfig = {
   title: "Samjna Analytics LLP",
