@@ -3,7 +3,7 @@
 import { Icons } from "@ui/components/icons";
 import { buttonVariants } from "@ui/components/ui/button";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@ui/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@ui/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@ui/components/ui/sheet";
 import { cn } from "@ui/utils";
 import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -47,7 +47,8 @@ export function SiteHeader() {
 
               <SheetContent side={"left"}>
                 <SheetHeader>
-                  <SheetTitle className="font-bold text-xl">Shadcn/React</SheetTitle>
+                  <SheetTitle className="font-bold text-xl">Samjna</SheetTitle>
+                  <SheetDescription className="text-muted-foreground">Words & Beyond</SheetDescription>
                 </SheetHeader>
                 <nav className="flex flex-col justify-center items-center gap-2 mt-4">
                   {routeList.map(({ href, label }: RouteProps) => (
