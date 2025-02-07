@@ -26,6 +26,12 @@ const links = [
     active: "default",
   },
   {
+    name: "Stroop Test Questions",
+    url: "/stroop-test-questions",
+    icon: apps.stress.Icon,
+    active: "default",
+  },
+  {
     name: "Interview Questions",
     url: "/interview-questions",
     icon: apps.interview.Icon,

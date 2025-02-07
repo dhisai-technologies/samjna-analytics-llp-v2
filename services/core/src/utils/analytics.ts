@@ -1,6 +1,12 @@
 import { db } from "@/db";
 import type { MulterBlobFile } from "@/types";
-import { type InterviewSession, type NursingSession, type StressSession, files } from "@lib/database";
+import {
+  type InterviewSession,
+  type NursingSession,
+  type StressSession,
+  type StroopTestSession,
+  files,
+} from "@lib/database";
 import { getBlobUrl, uploadBlob } from "./blob";
 
 export async function saveAnalyticsFile(file: MulterBlobFile) {
@@ -64,4 +70,8 @@ export function getInterviewSessionWithSignedUrls(session: InterviewSession) {
     }
   }
   return session as InterviewSession;
+}
+
+export function getStroopTestSessionWithSignedUrls(session: StroopTestSession) {
+  return session as StroopTestSession;
 }

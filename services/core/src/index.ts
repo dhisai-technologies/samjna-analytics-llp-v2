@@ -37,6 +37,9 @@ function startServer() {
     socket.on("join-interview-session", async (uid: string) => {
       socket.join(`interview-session-${uid}`);
     });
+    socket.on("join-stroop-test-session", async (uid: string) => {
+      socket.join(`stroop-test-session-${uid}`);
+    });
     socket.userId = await getSocketUser(config.SESSION_SECRET, socket);
     if (!socket.userId) return;
     socket.join(`notification-${socket.userId}`);

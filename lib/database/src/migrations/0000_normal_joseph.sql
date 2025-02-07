@@ -237,6 +237,36 @@ CREATE TABLE IF NOT EXISTS "stress_sessions" (
 	CONSTRAINT "stress_sessions_uid_unique" UNIQUE("uid")
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "stroop_test_questions" (
+	"id" varchar(30) PRIMARY KEY NOT NULL,
+	"order" integer DEFAULT 0 NOT NULL,
+	"title" text NOT NULL,
+	"level" varchar(255) NOT NULL,
+	"source" jsonb,
+	"destination" jsonb,
+	"answer" jsonb,
+	"time_limit" integer DEFAULT 0 NOT NULL,
+	"active" boolean DEFAULT true NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "stroop_test_sessions" (
+	"id" varchar(30) PRIMARY KEY NOT NULL,
+	"uid" varchar(255) NOT NULL,
+	"key" varchar(255),
+	"name" text NOT NULL,
+	"logs" text[] DEFAULT ARRAY[]::text[] NOT NULL,
+	"individual_analytics" jsonb,
+	"combined_analytics" jsonb,
+	"files" jsonb,
+	"error" jsonb,
+	"user_id" varchar(30) NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp NOT NULL,
+	CONSTRAINT "stroop_test_sessions_uid_unique" UNIQUE("uid")
+);
+--> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "interview_participants" ADD CONSTRAINT "interview_participants_interview_id_interviews_id_fk" FOREIGN KEY ("interview_id") REFERENCES "public"."interviews"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION

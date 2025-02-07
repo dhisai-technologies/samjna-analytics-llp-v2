@@ -1,7 +1,7 @@
 import { config } from "@/config";
 import { db } from "@/db";
 import { transporter } from "@/tools";
-import { type NursingSession, type StressSession, nursingTests, users } from "@lib/database";
+import { type NursingSession, type StressSession, type StroopTestSession, nursingTests, users } from "@lib/database";
 import { eq } from "drizzle-orm";
 
 export async function mailNursingReport(session: NursingSession) {
@@ -190,4 +190,8 @@ export async function mailStressReport(session: StressSession) {
     subject: `Stress Report for Session at ${formattedDate}`,
     html,
   });
+}
+
+export async function mailStroopTestReport(session: StroopTestSession) {
+  console.log("Stroop Test Report: ", session.id);
 }
