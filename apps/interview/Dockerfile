@@ -30,7 +30,8 @@ COPY --from=pruner /app/out/json/ .
 # First install the dependencies (as they change less often)
 # RUN --mount=type=cache,id=pnpm,target=~/.pnpm-store pnpm install --no-frozen-lockfile
 # Ensure fresh pnpm cache and retries
-RUN pnpm config set registry https://registry.npmmirror.com \
+RUN mkdir -p /root/.pnpm-store/v3/files \
+    && pnpm config set registry https://registry.npmmirror.com \
     && pnpm config set fetch-retry-mintimeout 30000 \
     && pnpm config set fetch-retry-maxtimeout 60000 \
     && pnpm store prune && pnpm store clear
