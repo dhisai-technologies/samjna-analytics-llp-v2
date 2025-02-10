@@ -16,7 +16,7 @@ export default [
       { id: "9", label: "Brown", color: "#A52A2A" },
     ],
     answer: "3",
-    timeLimit: 4,
+    timeLimit: 6,
     active: true,
   },
   {
@@ -36,7 +36,7 @@ export default [
       { id: "9", label: "Blue", color: "#0000FF" },
     ],
     answer: "5",
-    timeLimit: 4,
+    timeLimit: 6,
     active: true,
   },
   {
@@ -56,7 +56,7 @@ export default [
       { id: "9", label: "Brown", color: "#A52A2A" },
     ],
     answer: "1",
-    timeLimit: 4,
+    timeLimit: 6,
     active: true,
   },
 ];

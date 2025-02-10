@@ -31,7 +31,7 @@ export function StroopLanding() {
         onClick={async () => {
           setSessionStarted(true);
           await speakText(
-            "Hello, welcome to the stroop test. Please choose the one of the color from right side screen for each question in 3 seconds each!",
+            "Hello, welcome to the stroop test. Please choose the one of the color from right side screen for each question as fast as possible!",
           );
         }}
         className="w-52 mt-10"

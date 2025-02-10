@@ -3,9 +3,10 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
 import interviewQuestionsData from "./data/interview-questions";
 import nursingQuestionsData from "./data/nursing-questions";
+import stroopTestQuestionsData from "./data/stroop-test-questions";
 import usersData from "./data/users";
 
-import { coreInterviewQuestions, coreNursingQuestions, users } from "./schema";
+import { coreInterviewQuestions, coreNursingQuestions, stroopTestQuestions, users } from "./schema";
 
 dotenv.config();
 
@@ -30,6 +31,9 @@ async function main() {
       ...question,
       order: index + 1,
     } as typeof coreNursingQuestions.$inferInsert);
+  }
+  for (const question of stroopTestQuestionsData) {
+    await db.insert(stroopTestQuestions).values(question as typeof stroopTestQuestions.$inferInsert);
   }
   console.log("🌱 seeded database");
   process.exit(0);
