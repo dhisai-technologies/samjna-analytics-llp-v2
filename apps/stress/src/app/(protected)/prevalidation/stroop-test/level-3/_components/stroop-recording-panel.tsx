@@ -261,7 +261,7 @@ export function StroopRecordingPanel({ userId }: { userId: string }) {
         )}
       </div>
       {processing && (
-        <div className="bg-background absolute inset-0 md:rounded-tl-2xl w-full h-full flex flex-col items-center justify-center gap-3">
+        <div className="bg-background absolute inset-0 h-[calc(100vh-theme(spacing.44))] z-50 w-full flex flex-col items-center justify-center gap-3">
           {stroopScore !== undefined && (
             <Card className="absolute z-20 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex items-center gap-3 p-3 w-96">
               <dl className="grid gap-3 pb-2 w-full">
