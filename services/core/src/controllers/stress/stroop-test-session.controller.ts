@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { getStroopTestSessionWithSignedUrls } from "@/utils/analytics";
-import { stroopTestSessions } from "@lib/database";
+import { stroopTestSessions, users } from "@lib/database";
 import { type AppController, AppError, StatusCodes, catchAsync } from "@lib/utils/errors";
 import { getFilters, getPageCount, getSearch, getSort, getWithPagination } from "@lib/utils/helpers";
 import { and, count, desc, eq } from "drizzle-orm";
@@ -29,8 +29,14 @@ export const getStroopTestSessions: AppController = catchAsync(async (req, res) 
         createdAt: stroopTestSessions.createdAt,
         updatedAt: stroopTestSessions.updatedAt,
         userId: stroopTestSessions.userId,
+        users: {
+          id: users.id,
+          name: users.name,
+          email: users.email,
+        },
       })
       .from(stroopTestSessions)
+      .innerJoin(users, eq(users.id, stroopTestSessions.userId))
       .where(where);
     const result = await getWithPagination(
       query.$dynamic(),
@@ -42,6 +48,7 @@ export const getStroopTestSessions: AppController = catchAsync(async (req, res) 
         count: count(),
       })
       .from(stroopTestSessions)
+      .innerJoin(users, eq(users.id, stroopTestSessions.userId))
       .where(where)
       .execute()
       .then((res) => res[0]?.count ?? 0);
@@ -59,7 +66,7 @@ export const getStroopTestSessions: AppController = catchAsync(async (req, res) 
   return res.status(StatusCodes.OK).json({
     message: "Fetched stroopTestSessions successfully",
     data: {
-      stroopTestSessions: result,
+      stroopTestSessions: result.map((session) => ({ ...session, users: undefined, user: session.users })),
       pageCount: getPageCount(total, pagination),
       totalCount,
     },
