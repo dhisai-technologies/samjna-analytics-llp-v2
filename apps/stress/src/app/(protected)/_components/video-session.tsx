@@ -23,9 +23,8 @@ import {
 } from "@ui/components/ui/dialog";
 import { createFileFromBlob } from "@utils/helpers";
 import fixWebmDuration from "fix-webm-duration";
-import { HardDriveUpload, History, TvMinimalPlay } from "lucide-react";
+import { HardDriveUpload, TvMinimalPlay } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import ReactWebcam from "react-webcam";
 import RecordRTC from "recordrtc";
@@ -285,13 +284,7 @@ export default function VideoSession() {
             </Card>
           ) : (
             <>
-              <Button asChild className="fixed top-16 right-3" variant="secondary">
-                <Link href="/sessions">
-                  <History className="size-5 text-primary" />
-                  <span className="font-semibold">Previous Session</span>
-                </Link>
-              </Button>
-              <Image src={StressLanding} alt="sesison" className="w-60 mb-10" />
+              <Image src={StressLanding} alt="session" className="w-60 mb-10" />
               <Button onClick={() => setSessionStarted(true)} className="w-52">
                 <TvMinimalPlay className="mr-2 size-4" />
                 <span>Start Live Session</span>

@@ -1,7 +1,7 @@
 import { Brain, Command, Computer, LayoutDashboard, type LucideProps } from "lucide-react";
 import type { Module } from "../core";
 
-const isProduction = false;
+const isProduction = true;
 const host = "localhost";
 // const host = "host.docker.internal";
 

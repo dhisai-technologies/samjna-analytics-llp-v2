@@ -71,7 +71,7 @@ export function UpdateStroopTestQuestionSheet({ question, ...props }: UpdateStro
     >
       <DataForm form={form} state={state} action={action}>
         <ScrollArea className="max-h-[80vh]">
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 p-1">
             <input hidden {...form.register("stroopTestQuestionId")} />
             <DataFormField
               name="title"

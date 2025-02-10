@@ -1,9 +1,9 @@
 import * as dotenv from "dotenv";
 import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
-import interviewQuestionsData from "./data/interview-questions.json";
-import nursingQuestionsData from "./data/nursing-questions.json";
-import usersData from "./data/users.json";
+import interviewQuestionsData from "./data/interview-questions";
+import nursingQuestionsData from "./data/nursing-questions";
+import usersData from "./data/users";
 
 import { coreInterviewQuestions, coreNursingQuestions, users } from "./schema";
 

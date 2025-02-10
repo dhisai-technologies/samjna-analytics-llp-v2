@@ -33,7 +33,8 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
     analyze,
   } = useNursingTest();
   const { logs } = useLogSocket();
-  const { webcamRef, currentMediaRecorderRef, handleAnswer, handleRecording } = useNursingSession(userId);
+  const { webcamRef, currentMediaRecorderRef, handleAnswer, handleRecording } =
+    useNursingSession(userId);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [answer, setAnswer] = useState<string | null>(null);
   const [breakTimer, setBreakTimer] = useState<number | null>(null);
@@ -88,32 +89,33 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
           <div className="flex flex-col gap-3 pt-1">
             {/* MEDIA */}
             <div className="flex items-center justify-center gap-3">
-              {currentQuestion && !breakTimer && (
-                <>
-                  {["IMAGE", "AUDIO", "VIDEO"].includes(currentQuestion.type) && currentQuestion?.file && (
-                    <MediaCard
-                      type={currentQuestion.type as "IMAGE" | "AUDIO" | "VIDEO"}
-                      src={currentQuestion.file}
-                      className="w-96 lg:w-[700px] xl:w-[800px] 2xl:w-[1000px] aspect-video flex items-center justify-center rounded-lg overflow-hidden"
-                      autoplay={true}
-                      controls={false}
-                      onEnded={() => {
-                        if (count === questions.length) {
-                          setProcessing(true);
-                          setRecording(false);
-                          handleRecording();
-                        } else {
-                          handleNextQuestionWithBreak(count);
-                        }
-                      }}
-                    />
-                  )}
-                </>
-              )}
+              {currentQuestion &&
+                !breakTimer &&
+                ["IMAGE", "AUDIO", "VIDEO"].includes(currentQuestion.type) &&
+                currentQuestion?.file && (
+                  <MediaCard
+                    type={currentQuestion.type as "IMAGE" | "AUDIO" | "VIDEO"}
+                    src={currentQuestion.file}
+                    className="w-96 lg:w-[700px] xl:w-[800px] 2xl:w-[1000px] aspect-video flex items-center justify-center rounded-lg overflow-hidden"
+                    autoplay={true}
+                    controls={false}
+                    onEnded={() => {
+                      if (count === questions.length) {
+                        setProcessing(true);
+                        setRecording(false);
+                        handleRecording();
+                      } else {
+                        handleNextQuestionWithBreak(count);
+                      }
+                    }}
+                  />
+                )}
               <div
                 className={cn(
                   "overflow-hidden rounded-xl bg-muted",
-                  GST && count === 27 ? "w-96 lg:w-[700px] xl:w-[800px] 2xl:w-[1000px]" : "absolute w-5 h-5 opacity-0",
+                  GST && count === 27
+                    ? "w-96 lg:w-[700px] xl:w-[800px] 2xl:w-[1000px]"
+                    : "absolute w-5 h-5 opacity-0"
                 )}
               >
                 <ReactWebcam
@@ -133,7 +135,11 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
             <div
               className={cn(
                 "flex flex-col gap-3 justify-between",
-                recording ? (currentQuestion?.type !== "TEXT" ? "h-auto" : "h-32") : "h-40",
+                recording
+                  ? currentQuestion?.type !== "TEXT"
+                    ? "h-auto"
+                    : "h-32"
+                  : "h-40"
               )}
             >
               {/* INITIAL */}
@@ -142,11 +148,22 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
                   <div className="max-w-lg h-full flex flex-col items-start justify-center overflow-hidden">
                     <BoxReveal duration={0.5}>
                       <p className="mt-2 text-sm">
-                        Please answer to the questions as <span className="text-primary font-semibold">honestly</span>{" "}
-                        as possible. After answering click <span className="text-primary font-semibold">Next</span> to
-                        move forward. Some questions may have a{" "}
-                        <span className="text-primary font-semibold">time limit</span> and
-                        <span className="text-primary font-semibold"> auto-advance</span>.
+                        Please answer to the questions as{" "}
+                        <span className="text-primary font-semibold">
+                          honestly
+                        </span>{" "}
+                        as possible. After answering click{" "}
+                        <span className="text-primary font-semibold">Next</span>{" "}
+                        to move forward. Some questions may have a{" "}
+                        <span className="text-primary font-semibold">
+                          time limit
+                        </span>{" "}
+                        and
+                        <span className="text-primary font-semibold">
+                          {" "}
+                          auto-advance
+                        </span>
+                        .
                       </p>
                     </BoxReveal>
                   </div>
@@ -162,7 +179,10 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
                     >
                       Cancel
                     </Button>
-                    <Button onClick={() => handleNextQuestionWithBreak(count)} className="w-32">
+                    <Button
+                      onClick={() => handleNextQuestionWithBreak(count)}
+                      className="w-32"
+                    >
                       Continue
                     </Button>
                   </div>
@@ -173,7 +193,9 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
                   {/* BREAK TIMER */}
                   {breakTimer !== null ? (
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
-                      <h2 className="text-2xl font-semibold text-white">Next question in {breakTimer}s</h2>
+                      <h2 className="text-2xl font-semibold text-white">
+                        Next question in {breakTimer}s
+                      </h2>
                     </div>
                   ) : (
                     <>
@@ -190,11 +212,23 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
                             <BoxReveal duration={0.5}>
                               <p className="mt-2 text-sm">
                                 Please align your face with the camera and click{" "}
-                                <span className="text-primary font-semibold">Start Recording</span>. Answer each
-                                question and click <span className="text-primary font-semibold">Next</span> when ready.
-                                Some questions may have a <span className="text-primary font-semibold">time limit</span>{" "}
+                                <span className="text-primary font-semibold">
+                                  Start Recording
+                                </span>
+                                . Answer each question and click{" "}
+                                <span className="text-primary font-semibold">
+                                  Next
+                                </span>{" "}
+                                when ready. Some questions may have a{" "}
+                                <span className="text-primary font-semibold">
+                                  time limit
+                                </span>{" "}
                                 and
-                                <span className="text-primary font-semibold"> auto-advance</span>.
+                                <span className="text-primary font-semibold">
+                                  {" "}
+                                  auto-advance
+                                </span>
+                                .
                               </p>
                             </BoxReveal>
                           </div>
@@ -209,23 +243,47 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
                           {/* QUESTIONS */}
                           <div className="flex items-start justify-between">
                             <div className="max-w-lg h-full flex flex-col items-start justify-center overflow-hidden">
-                              <BoxReveal duration={0.5} key={`${currentQuestion.id}-title`}>
-                                <h2 className="text-lg font-semibold">{currentQuestion.title}</h2>
+                              <BoxReveal
+                                duration={0.5}
+                                key={`${currentQuestion.id}-title`}
+                              >
+                                <h2 className="text-lg font-semibold">
+                                  {currentQuestion.title}
+                                </h2>
                               </BoxReveal>
                               {currentQuestion.description && (
-                                <BoxReveal duration={0.5} key={`${currentQuestion.id}-description`}>
-                                  <p className="text-sm text-muted-foreground">{currentQuestion.description}</p>
+                                <BoxReveal
+                                  duration={0.5}
+                                  key={`${currentQuestion.id}-description`}
+                                >
+                                  <p className="text-sm text-muted-foreground">
+                                    {currentQuestion.description}
+                                  </p>
                                 </BoxReveal>
                               )}
                               {currentQuestion.type === "SELECT" &&
                                 currentQuestion.options &&
                                 currentQuestion.options.length > 0 && (
-                                  <BoxReveal duration={0.5} key={`${currentQuestion.id}-select`}>
-                                    <RadioGroup onValueChange={setAnswer} className="mt-4">
+                                  <BoxReveal
+                                    duration={0.5}
+                                    key={`${currentQuestion.id}-select`}
+                                  >
+                                    <RadioGroup
+                                      onValueChange={setAnswer}
+                                      className="mt-4"
+                                    >
                                       {currentQuestion.options.map((option) => (
-                                        <div className="flex items-center space-x-2" key={option.value}>
-                                          <RadioGroupItem value={option.value} id={option.value} />
-                                          <Label htmlFor={option.value}>{option.label}</Label>
+                                        <div
+                                          className="flex items-center space-x-2"
+                                          key={option.value}
+                                        >
+                                          <RadioGroupItem
+                                            value={option.value}
+                                            id={option.value}
+                                          />
+                                          <Label htmlFor={option.value}>
+                                            {option.label}
+                                          </Label>
                                         </div>
                                       ))}
                                     </RadioGroup>
@@ -243,11 +301,17 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
                           <div className="flex gap-3 items-center justify-end">
                             <Button
                               onClick={() => {
-                                if (currentQuestion.type === "SELECT" && !answer) {
+                                if (
+                                  currentQuestion.type === "SELECT" &&
+                                  !answer
+                                ) {
                                   toast.error("Please select an answer");
                                   return;
                                 }
-                                if (currentQuestion.type === "SELECT" && answer) {
+                                if (
+                                  currentQuestion.type === "SELECT" &&
+                                  answer
+                                ) {
                                   handleNextQuestionWithBreak(count, answer);
                                   setAnswer(null);
                                   return;
@@ -287,15 +351,21 @@ export function NursingRecordingPanel({ userId }: { userId: string }) {
                   <dd className="font-medium">{GST.coreDisgust}</dd>
                 </div>
                 <div className="flex gap-3 items-center justify-between">
-                  <dt className="text-muted-foreground">Animal Reminder Disgust</dt>
+                  <dt className="text-muted-foreground">
+                    Animal Reminder Disgust
+                  </dt>
                   <dd className="font-medium">{GST.animalRemainderDisgust}</dd>
                 </div>
                 <div className="flex gap-3 items-center justify-between">
-                  <dt className="text-muted-foreground">Contaminated based disgust</dt>
+                  <dt className="text-muted-foreground">
+                    Contaminated based disgust
+                  </dt>
                   <dd className="font-medium">{GST.contaminationDisgust}</dd>
                 </div>
                 <div className="flex gap-3 items-center justify-between">
-                  <dt className="text-muted-foreground">Disgust Sensitivity Score (By Interview)</dt>
+                  <dt className="text-muted-foreground">
+                    Disgust Sensitivity Score (By Interview)
+                  </dt>
                   <dd className="font-medium">{GST.disgustSensitivity}</dd>
                 </div>
               </dl>

@@ -1,8 +1,9 @@
 import * as dotenv from "dotenv";
 import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
-import { users } from "./schema";
-import data from "./users.json";
+import stroopTestQuestionsData from "./data/stroop-test-questions";
+
+import { stroopTestQuestions } from "./schema";
 
 dotenv.config();
 
@@ -16,18 +17,10 @@ const db = drizzle(client);
 async function main() {
   await client.connect();
   console.log("📦 connected to database");
-  for (const el of data) {
-    await db.insert(users).values({
-      id: el.uid,
-      email: el.email,
-      name: el.name,
-      role: el.role,
-      active: el.active,
-      module: el.module,
-      maxParticipants: el.max_participants,
-    });
+  for (const question of stroopTestQuestionsData) {
+    await db.insert(stroopTestQuestions).values(question as typeof stroopTestQuestions.$inferInsert);
   }
-  console.log("🌱 migrated data");
+  console.log("🌱 seeded database");
   process.exit(0);
 }
 

@@ -29,7 +29,7 @@ export function CreateStroopTestQuestionDialog({ order, ...props }: CreateStroop
       title: "Choose the correct matching color word from the right side screen",
       order: order ?? 1,
       level: "LEVEL-1",
-      timeLimit: 4,
+      timeLimit: 6,
       answer: "",
       sourceLabel: "",
       sourceColor: "",

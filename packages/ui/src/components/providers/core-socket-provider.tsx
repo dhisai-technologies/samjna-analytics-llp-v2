@@ -1,7 +1,7 @@
 import type { Notification } from "@config/core";
 import type { InterviewSession } from "@config/interview";
 import type { NursingSession } from "@config/nursing";
-import type { StressSession } from "@config/stress";
+import type { StressSession, StroopTestSession } from "@config/stress";
 import { appConfig } from "@config/ui";
 import type React from "react";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
@@ -13,6 +13,9 @@ interface CoreSocketContextType {
   stressSession?: StressSession;
   setStressSession: React.Dispatch<React.SetStateAction<StressSession | undefined>>;
   joinStressSession: (uid: string) => void;
+  stroopSession?: StroopTestSession;
+  setStroopSession: React.Dispatch<React.SetStateAction<StroopTestSession | undefined>>;
+  joinStroopSession: (uid: string) => void;
   interviewSession?: InterviewSession;
   setInterviewSession: React.Dispatch<React.SetStateAction<InterviewSession | undefined>>;
   joinInterviewSession: (uid: string) => void;
@@ -30,6 +33,7 @@ export function CoreSocketProvider({
 }) {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [stressSession, setStressSession] = useState<StressSession>();
+  const [stroopSession, setStroopSession] = useState<StroopTestSession>();
   const [interviewSession, setInterviewSession] = useState<InterviewSession>();
   const [nursingSession, setNursingSession] = useState<NursingSession>();
   const [socket, setSocket] = useState<Socket>();
@@ -37,6 +41,13 @@ export function CoreSocketProvider({
     (uid: string) => {
       if (!socket) return;
       socket.emit("join-stress-session", uid);
+    },
+    [socket],
+  );
+  const joinStroopSession = useCallback(
+    (uid: string) => {
+      if (!socket) return;
+      socket.emit("join-stroop-session", uid);
     },
     [socket],
   );
@@ -85,6 +96,9 @@ export function CoreSocketProvider({
         stressSession,
         setStressSession,
         joinStressSession,
+        stroopSession,
+        setStroopSession,
+        joinStroopSession,
         interviewSession,
         setInterviewSession,
         joinInterviewSession,
