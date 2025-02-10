@@ -52,7 +52,10 @@ export function StroopRecordingPanel({ userId }: { userId: string }) {
       }, 100);
     }
     handleAnswer({ answer: answer ? answer : "1400" });
+    setAnswer(null);
     if (count === questions.length) {
+      setProcessing(true);
+      setRecording(false);
       handleRecording();
     }
   };
@@ -198,18 +201,7 @@ export function StroopRecordingPanel({ userId }: { userId: string }) {
                                         toast.error("Please select an answer");
                                         return;
                                       }
-                                      if (answer) {
-                                        handleNextQuestionWithBreak(count, answer);
-                                        setAnswer(null);
-                                        return;
-                                      }
-                                      if (count === questions.length) {
-                                        setProcessing(true);
-                                        setRecording(false);
-                                        handleRecording();
-                                      } else {
-                                        handleNextQuestionWithBreak(count);
-                                      }
+                                      handleNextQuestionWithBreak(count, answer);
                                     }}
                                     className="w-24"
                                   >
