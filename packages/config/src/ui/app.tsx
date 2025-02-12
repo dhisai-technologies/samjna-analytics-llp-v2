@@ -43,8 +43,8 @@ export const apps = {
     defaultColor: "red",
     Icon: (props: LucideProps) => <Brain {...props} />,
     api: {
-      url: isProduction ? "https://analytics-stress.samjna.co.in" : `http://${host}:8001`,
-      socket: isProduction ? "https://analytics-stress.samjna.co.in" : "http://localhost:8001",
+      url: isProduction ? "https://analytics.samjna.co.in" : `http://${host}:8001`,
+      socket: isProduction ? "https://analytics.samjna.co.in" : "http://localhost:8001",
     },
   },
   nursing: {
@@ -56,8 +56,8 @@ export const apps = {
     defaultColor: "red",
     Icon: (props: LucideProps) => <Command {...props} />,
     api: {
-      url: isProduction ? "https://analytics-stress.samjna.co.in" : `http://${host}:8001`,
-      socket: isProduction ? "https://analytics-stress.samjna.co.in" : "http://localhost:8001",
+      url: isProduction ? "https://analytics.samjna.co.in" : `http://${host}:8001`,
+      socket: isProduction ? "https://analytics.samjna.co.in" : "http://localhost:8001",
     },
   },
   interview: {
@@ -69,8 +69,8 @@ export const apps = {
     defaultColor: "red",
     Icon: (props: LucideProps) => <Computer {...props} />,
     api: {
-      url: isProduction ? "https://analytics-stress.samjna.co.in" : `http://${host}:8001`,
-      socket: isProduction ? "https://analytics-stress.samjna.co.in" : "http://localhost:8001",
+      url: isProduction ? "https://analytics.samjna.co.in" : `http://${host}:8001`,
+      socket: isProduction ? "https://analytics.samjna.co.in" : "http://localhost:8001",
     },
   },
 };
