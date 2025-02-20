@@ -20,7 +20,7 @@ export async function createStroopTestSession(uid: string) {
   };
 }
 
-export async function analyzeStroopTestVideo(formData: FormData, analyze = true) {
+export async function analyzeStroopTestVideo(formData: FormData, analyze: boolean) {
   if (!analyze) {
     const response = await retrieve(`${config.CORE_API_URL}/v1/files/analytics`, {
       method: "POST",

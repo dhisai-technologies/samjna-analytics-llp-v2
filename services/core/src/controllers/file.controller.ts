@@ -81,7 +81,14 @@ export const getAnalyticsVideoFiles: AppController = catchAsync(async (req, res)
       })
       .from(files)
       .where(where);
-    const result = await getWithPagination(query.$dynamic(), getSort(files, sorting), pagination);
+    const result = await getWithPagination(
+      query.$dynamic(),
+      getSort(files, sorting, {
+        column: "createdAt",
+        order: "desc",
+      }),
+      pagination,
+    );
     const total = await tx
       .select({
         count: count(),

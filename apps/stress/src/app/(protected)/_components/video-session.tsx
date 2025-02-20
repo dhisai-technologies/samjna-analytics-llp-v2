@@ -21,6 +21,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@ui/components/ui/dialog";
+import { Label } from "@ui/components/ui/label";
+import { Switch } from "@ui/components/ui/switch";
 import { createFileFromBlob } from "@utils/helpers";
 import fixWebmDuration from "fix-webm-duration";
 import { HardDriveUpload, TvMinimalPlay } from "lucide-react";
@@ -35,6 +37,7 @@ export default function VideoSession() {
   const [recording, setRecording] = useState(false);
   const [sessionStarted, setSessionStarted] = useState(false);
   const [count, setCount] = useState(0);
+  const [analyze, setAnalyze] = useState(false);
   const [words, setWords] = useState<Word[]>([]);
   const [files, setFiles] = useState<File[]>([]);
   const [open, setOpen] = useState(false);
@@ -149,7 +152,10 @@ export default function VideoSession() {
       if (count === stressQuestions.length) {
         downloadEntireVideo(sessionId);
       }
-      await analyzeStressVideo(formData);
+      await analyzeStressVideo(formData, analyze);
+      if (count === stressQuestions.length && !analyze) {
+        window.location.reload();
+      }
     });
   };
   useEffect(() => {
@@ -172,7 +178,7 @@ export default function VideoSession() {
   }, [stressSession]);
   useEffect(() => {
     if (user.email.length === 0) {
-      window.location.href = `${window.location.origin}/site`;
+      window.location.href = `${window.location.origin}/preview`;
     }
   }, [user]);
   useEffect(() => {
@@ -284,6 +290,12 @@ export default function VideoSession() {
             </Card>
           ) : (
             <>
+              <div className="absolute top-0 right-0 flex items-center gap-3 p-3">
+                <div className="flex items-center space-x-2">
+                  <Switch id="analyze-mode" checked={analyze} onCheckedChange={setAnalyze} />
+                  <Label htmlFor="analyze-mode">Analyze</Label>
+                </div>
+              </div>
               <Image src={StressLanding} alt="session" className="w-60 mb-10" />
               <Button onClick={() => setSessionStarted(true)} className="w-52">
                 <TvMinimalPlay className="mr-2 size-4" />
@@ -341,7 +353,7 @@ export default function VideoSession() {
                         formData.append("uid", uid);
                         formData.append("count", "1");
                         formData.append("final", "true");
-                        await analyzeStressVideo(formData);
+                        await analyzeStressVideo(formData, false);
                       }}
                     >
                       Upload

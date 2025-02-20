@@ -73,7 +73,7 @@ export function useInterviewSession(userId: string) {
           formData.append("question_id", question.id);
         }
         await analyzeInterviewVideo(formData, analyze);
-        if (count === questions.length) {
+        if (count === questions.length && !analyze) {
           window.location.reload();
         }
       });
