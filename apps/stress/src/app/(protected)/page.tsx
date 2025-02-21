@@ -7,7 +7,7 @@ const VideoSession = dynamic(() => import("./_components/video-session"), { ssr:
 export default function Page() {
   const app = apps.stress;
   return (
-    <main className="relative w-full min-h-[calc(100vh-theme(spacing.14))] bg-background py-10">
+    <main className="relative w-full min-h-[calc(100vh-theme(spacing.14))] bg-background">
       <LogSocketProvider url={app.api.socket}>
         <VideoSession />
       </LogSocketProvider>

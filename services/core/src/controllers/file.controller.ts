@@ -156,10 +156,15 @@ export const uploadAnalyticsFile: AppController = catchAsync(async (req, res) =>
     throw new AppError("No file was uploaded", StatusCodes.BAD_REQUEST);
   }
   const key = `${Date.now().toString()}-${multerFile.originalname}`;
+  console.log("Uploading file", key, req.body);
+  const { uid, count } = req.body as {
+    uid: string;
+    count: string;
+  };
   uploadBlob(key, multerFile);
   await db.insert(files).values({
     key,
-    name: multerFile.originalname,
+    name: `${uid}-${count}-${multerFile.originalname}`,
     mimetype: multerFile.mimetype,
     size: multerFile.size,
     userId: "",

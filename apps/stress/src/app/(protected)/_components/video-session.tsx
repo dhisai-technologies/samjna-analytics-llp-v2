@@ -1,7 +1,6 @@
 "use client";
 
 import { StressTestAnalytics } from "@/components/stress-analytics/stress-test-analytics";
-import { TypewriterEffectSmooth } from "@/components/typewriter-effect";
 import { analyzeStressVideo, createStressSession } from "@/lib/actions";
 import StressLanding from "@/lib/images/stress-landing.png";
 import { type Word, stressQuestions } from "@config/stress";
@@ -25,7 +24,7 @@ import { Label } from "@ui/components/ui/label";
 import { Switch } from "@ui/components/ui/switch";
 import { createFileFromBlob } from "@utils/helpers";
 import fixWebmDuration from "fix-webm-duration";
-import { HardDriveUpload, TvMinimalPlay } from "lucide-react";
+import { CircleCheck, HardDriveUpload, MoveRight, Play, TvMinimalPlay, XCircle } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import ReactWebcam from "react-webcam";
@@ -45,7 +44,7 @@ export default function VideoSession() {
   const webcamRef = useRef<ReactWebcam>(null);
   const currentMediaRecorderRef = useRef<RecordRTC>(null);
   const totalMediaRecorderRef = useRef<RecordRTC>(null);
-  const { stressSession, setStressSession, joinStressSession } = useCoreSocket();
+  const { stressSession, joinStressSession } = useCoreSocket();
   const { user } = useAuth();
   const [totalStartTime, setTotalStartTime] = useState(0);
   const [startTime, setStartTime] = useState(0);
@@ -192,81 +191,84 @@ export default function VideoSession() {
   return (
     <>
       {!stressSession ? (
-        <div className="relative w-full h-full flex flex-col items-center justify-center gap-3">
+        <div className="relative w-full h-full flex flex-col items-center justify-center gap-3 min-h-[calc(100vh-theme(spacing.14))]">
           {sessionStarted ? (
             <Card className="p-3 w-[75vw]">
               <CardHeader className="px-3 py-0 flex flex-col gap-3">
                 {!recording ? (
-                  <>
-                    <div className="h-20 bg-muted flex flex-row justify-center items-center rounded-xl px-2">
+                  <div className="flex gap-2 items-center">
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setRecording(false);
+                        setSessionStarted(false);
+                        currentMediaRecorderRef.current?.reset();
+                      }}
+                      className="flex flex-col items-center h-20 gap-2 w-20"
+                    >
+                      <XCircle className="text-muted-foreground" />
+                      <p className="text-muted-foreground">Cancel</p>
+                    </Button>
+                    <div className="h-20 bg-muted flex flex-row justify-center items-center rounded-xl px-2 flex-1">
                       <p className="text-sm text-muted-foreground text-center">
                         Please align your face to the <span className="text-primary">center</span> of your camera, and
-                        click on <span className="text-primary">start recording</span>. A series of questions will be
-                        asked, please click on <span className="text-primary">next</span> once you feel you have
-                        answered the question to the best of your ability.
+                        click on <span className="text-primary">start</span>. A series of questions will be asked,
+                        please click on <span className="text-primary">next</span> once you feel you have answered the
+                        question to the best of your ability.
                       </p>
                     </div>
-                    <div className="grid gap-3 grid-cols-2">
-                      <Button
-                        variant="secondary"
-                        onClick={() => {
-                          setRecording(false);
-                          setSessionStarted(false);
-                          currentMediaRecorderRef.current?.reset();
-                        }}
-                      >
-                        Cancel
-                      </Button>
-                      <Button onClick={() => handleNext(sessionId, 0, Date.now())}>Start Recording</Button>
-                    </div>
-                  </>
+                    <Button
+                      variant="outline"
+                      onClick={() => handleNext(sessionId, 0, Date.now())}
+                      className="flex flex-col items-center h-20 gap-2 w-20"
+                    >
+                      <Play className="fill-primary stroke-primary" />
+                      <p className="text-primary">Start</p>
+                    </Button>
+                  </div>
                 ) : (
                   <>
-                    <div className="h-20 bg-muted flex flex-row justify-center items-center rounded-xl">
-                      <p className="font-semibold mr-3">AI: </p>
-                      <TypewriterEffectSmooth
-                        className="items-center my-0 pb-5 mt-2"
-                        words={words}
-                        cursorClassName="!h-6 mt-2"
-                      />
-                    </div>
-                    <div className="grid gap-3 grid-cols-3">
+                    <div className="flex items-center gap-2">
                       <Button
-                        variant="secondary"
+                        variant="outline"
                         onClick={() => {
                           setRecording(false);
                           setSessionStarted(false);
                           currentMediaRecorderRef.current?.reset();
+                          window.location.reload();
                         }}
+                        className="flex flex-col items-center h-20 gap-2 w-20"
                       >
-                        Cancel
+                        <XCircle className="text-muted-foreground" />
+                        <p className="text-muted-foreground">Cancel</p>
                       </Button>
-                      <Button
-                        onClick={() => {
-                          setRecording(false);
-                          setCount(0);
-                          setWords([]);
-                          setStressSession(undefined);
-                          currentMediaRecorderRef.current?.reset();
-                          handleNext(sessionId, 0, Date.now());
-                          setProcessing(false);
-                        }}
-                        variant="outline"
-                      >
-                        Restart Recording
-                      </Button>
+                      <div className="h-20 bg-muted flex flex-row justify-center items-center rounded-xl px-2 flex-1">
+                        <p className="text-sm text-muted-foreground text-center font-bold">
+                          {words.map((word) => word.text).join(" ")}
+                        </p>
+                      </div>
                       {count === stressQuestions.length ? (
                         <Button
+                          variant="outline"
                           onClick={() => {
                             setProcessing(true);
                             setRecording(false);
                             handleNext(sessionId, count, startTime);
                           }}
+                          className="flex flex-col items-center h-20 gap-2 w-20"
                         >
-                          Analyze
+                          <CircleCheck className="text-primary" />
+                          <p className="text-primary">Analyze</p>
                         </Button>
                       ) : (
-                        <Button onClick={() => handleNext(sessionId, count, startTime)}>Next Question</Button>
+                        <Button
+                          variant="outline"
+                          onClick={() => handleNext(sessionId, count, startTime)}
+                          className="flex flex-col items-center h-20 gap-2 w-20"
+                        >
+                          <MoveRight className="fill-primary stroke-primary" />
+                          <p className="text-primary">Next</p>
+                        </Button>
                       )}
                     </div>
                   </>
@@ -365,12 +367,12 @@ export default function VideoSession() {
           )}
         </div>
       ) : (
-        <div className="flex flex-col items-center gap-3 w-full p-3 h-full">
+        <div className="flex flex-col items-center gap-3 w-full p-3 h-full min-h-[calc(100vh-theme(spacing.14))]">
           <StressTestAnalytics session={stressSession} liveLogs={logs} />
         </div>
       )}
       {processing && (
-        <div className="bg-background md:rounded-tl-2xl relative w-full h-full flex flex-col items-center justify-center gap-3">
+        <div className="bg-background md:rounded-tl-2xl relative w-full h-full flex flex-col items-center justify-center gap-3 min-h-[calc(100vh-theme(spacing.14))]">
           <div className="fixed inset-0 bg-background">
             <MultiStepLoader loading={processing} duration={2000} />
           </div>
