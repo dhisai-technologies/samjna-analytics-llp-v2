@@ -43,38 +43,12 @@ export default function VideoSession() {
   const [processing, setProcessing] = useState(false);
   const webcamRef = useRef<ReactWebcam>(null);
   const currentMediaRecorderRef = useRef<RecordRTC>(null);
-  const totalMediaRecorderRef = useRef<RecordRTC>(null);
   const { stressSession, joinStressSession } = useCoreSocket();
   const { user } = useAuth();
-  const [totalStartTime, setTotalStartTime] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const [sessionId, setSessionId] = useState("");
   const { connect, disconnect, logs } = useLogSocket();
-  const downloadEntireVideo = (sessionId: string) => {
-    if (!totalMediaRecorderRef.current) return;
-    totalMediaRecorderRef.current.stopRecording(() => {
-      if (!totalMediaRecorderRef.current) return;
-      const blob = totalMediaRecorderRef.current.getBlob();
-      const duration = Date.now() - totalStartTime;
-      fixWebmDuration(blob, duration, async (seekableBlob) => {
-        const url = URL.createObjectURL(seekableBlob);
-        const anchor = document.createElement("a");
-        anchor.style.display = "none";
-        anchor.href = url;
-        anchor.download = `${sessionId}_video.webm`;
-        document.body.appendChild(anchor);
-        anchor.click();
-        document.body.removeChild(anchor);
-        URL.revokeObjectURL(url);
-        toast.success("Video downloaded successfully");
-      });
-      // Destroy the current recorder
-      totalMediaRecorderRef.current?.destroy();
-      //@ts-ignore
-      totalMediaRecorderRef.current = null;
-    });
-  };
-  const startRecording = (count: number) => {
+  const startRecording = (_count: number) => {
     if (!webcamRef.current?.stream) return;
     //@ts-ignore
     currentMediaRecorderRef.current = new RecordRTC(webcamRef.current.stream, {
@@ -87,19 +61,6 @@ export default function VideoSession() {
     });
     currentMediaRecorderRef.current.startRecording();
     setStartTime(Date.now());
-    if (count === 0) {
-      //@ts-ignore
-      totalMediaRecorderRef.current = new RecordRTC(webcamRef.current.stream, {
-        type: "video",
-        mimeType: "video/webm",
-        audioBitsPerSecond: 128000,
-        videoBitsPerSecond: 1280000,
-        bitsPerSecond: 1280000,
-        disableLogs: true,
-      });
-      totalMediaRecorderRef.current.startRecording();
-      setTotalStartTime(Date.now());
-    }
   };
   const handleNext = async (sessionId: string, count: number, time: number) => {
     if (count === 0) {
@@ -148,9 +109,6 @@ export default function VideoSession() {
       formData.append("uid", sessionId);
       formData.append("count", count.toString());
       formData.append("final", count === stressQuestions.length ? "true" : "false");
-      if (count === stressQuestions.length) {
-        downloadEntireVideo(sessionId);
-      }
       await analyzeStressVideo(formData, analyze);
       if (count === stressQuestions.length && !analyze) {
         window.location.reload();

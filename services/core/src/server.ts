@@ -10,10 +10,12 @@ import Router from "@/routes";
 
 export const createServer = (): Express => {
   const app = express();
-
+  morgan.token("ist-time", () => {
+    return new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  });
   app
     .disable("x-powered-by")
-    .use(morgan("common"))
+    .use(morgan('[:ist-time] ":method :url HTTP/:http-version" :status :res[content-length]'))
     .use(express.urlencoded({ extended: true }))
     .use(express.json())
     .use(express.static("public"))
