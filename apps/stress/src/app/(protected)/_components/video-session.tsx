@@ -313,7 +313,7 @@ export default function VideoSession() {
                         formData.append("uid", uid);
                         formData.append("count", "1");
                         formData.append("final", "true");
-                        await analyzeStressVideo(formData, false);
+                        await analyzeStressVideo(formData, true, false);
                       }}
                     >
                       Upload

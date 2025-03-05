@@ -19,13 +19,15 @@ export async function createStressSession(uid: string) {
   };
 }
 
-export async function analyzeStressVideo(formData: FormData, analyze: boolean) {
-  const response = await retrieve(`${config.CORE_API_URL}/v1/files/analytics`, {
-    method: "POST",
-    body: formData,
-  });
-  if (!response.ok) {
-    throw new Error("Failed to upload video");
+export async function analyzeStressVideo(formData: FormData, analyze: boolean, upload = true) {
+  if (upload) {
+    const response = await retrieve(`${config.CORE_API_URL}/v1/files/analytics`, {
+      method: "POST",
+      body: formData,
+    });
+    if (!response.ok) {
+      throw new Error("Failed to upload video");
+    }
   }
   if (analyze) {
     const response = await fetch(`${config.STRESS_API_URL}/analyze/stress`, {
